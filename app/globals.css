@@ -6,6 +6,9 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
+    --page:#F2F7F8;
+    --main:#00032B;
+    --main-hover:#00032B;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -71,6 +74,21 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground  text-sm bg-page;
   }
+  .body{
+    @apply overflow-hidden
+  }
+  .paddingx{
+    @apply px-2 xs:px-4 sm:px-6 lg:px-10
+   }
+   .landing-padding{
+     @apply px-2 xs:px-4 sm:px-8 md:px-10 xl:px-14
+   }
+   .flex-center{
+    @apply flex items-center
+   }
+   .menu-bar{
+    @apply bg-main h-[3px]   rounded-sm w-full transition-all duration-300
+   }
 }
