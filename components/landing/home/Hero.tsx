@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <div className='flex-center flex-wrap min-h-[80vh]'>
       <div className="w-full lg:w-6/12 lg:pr-2">
-        <div className="bg-green-200 mb-6 max-lg:mx-auto rounded-2xl font-semibold text-xs py-[6px] px-6 text-shade w-fit">{Typography.heroTag}</div>
+        <div className="bg-green-200 mb-6 max-lg:mt-6 max-lg:mx-auto rounded-2xl font-semibold text-xs py-[6px] px-6 text-shade w-fit">{Typography.heroTag}</div>
         <h1 className="text-3xl xs:text-4xl mb-4 my-4 sm:text-5xl md:text-5xl max-lg:text-center  font-semibold animate-fadeUp">{Typography.hero}
         </h1>
         <h1 className="text-shade mb-12 text-sm max-lg:text-center animate-fadeUpDelay">{Typography.heroContent}</h1>
