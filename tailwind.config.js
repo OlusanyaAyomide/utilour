@@ -18,10 +18,14 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily:{
+        inter:['Inter', 'sans-serif']
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        shade:"var(--shade)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         page:"var(--page)",
@@ -82,12 +86,81 @@ module.exports = {
             opacity:1
           },
         },
+        fadeUpDelay:{
+          "0% , 50%":{
+            transform:"translateY(160px)",
+            opacity:0
+          },
+          "100%":{
+            transform:"translateY(0px)",
+            opacity:1
+          },
+        },
+        popinDelay:{
+          "0% , 70%":{
+            transform:"scale(0.2)",
+            opacity:0,
+          },
+          "100%":{
+            transform:"scale(1)",
+            opacity:1  
+          }
+        },
+        fadeUpDelay1:{
+          "0% , 65%":{
+            transform:"translateY(160px)",
+            opacity:0
+          },
+          "100%":{
+            transform:"translateY(0px)",
+            opacity:1
+          },
+        },
+        fadeUpDelay2:{
+          "0% , 90%":{
+            transform:"translateY(160px)",
+            opacity:0
+          },
+          "100%":{
+            transform:"translateY(0px)",
+            opacity:1
+          },
+        },
+        fadeUpDelay3:{
+          "0% , 95%":{
+            transform:"translateY(160px)",
+            opacity:0
+          },
+          "100%":{
+            transform:"translateY(0px)",
+            opacity:1
+          },
+        },
+        customBounce:{
+          "0%, 20%, 50%, 80%, 100%": {
+            transform: "translateY(0)"
+          },
+          "40%": {
+            transform: "translateY(-10px)"
+          },
+          "60%": {
+            transform: "translateY(-5px)"
+          },
+        },
+
       },
 
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        fadeUp:"fadeup 0.3s linear 1"
+        fadeUp:"fadeup 0.5s linear 1",
+        fadeUpDelay:"fadeUpDelay 0.8s linear 1",
+        popinDelay:"popinDelay 1s linear 1",
+        fadeUpDelay1:"fadeUpDelay1 1.4s linear 1",
+        fadeUpDelay2:"fadeUpDelay1 2s linear 1",
+        fadeUpDelay3:"fadeUpDelay1 2.4s linear 1",
+        custombounce:"customBounce 8s linear infinite",
+        fadeinView:"fadeup 0.75s linear 1"
       },
       screens:{ 
         xs:"340px",

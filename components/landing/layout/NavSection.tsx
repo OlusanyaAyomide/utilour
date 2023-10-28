@@ -7,15 +7,15 @@ import Link from 'next/link'
 
 export default function NavSection() {
   return (
-    <div className='mb-10 h-full py-[16%] md:hidden flex text-main flex-col justify-between text-2xl w-[200px] pt-20 mx-auto font-semibold animate-fadeUp'>
+    <div className='mb-10 h-full py-[16%] xs:py-[30%] md:hidden flex text-main flex-col justify-between text-2xl w-[200px] pt-20 mx-auto font-semibold animate-fadeUp'>
         <Accordion type='multiple'>
             <AccordionItem value='invest' className='border-b-0'>
                 <AccordionTrigger className='w-[200px] mb-1 flex justify-center  hover:no-underline border-b-0'>
-                    <h1 className='text-center hover:text-primary mr-3'>Invest</h1>
+                    <h1 className='text-center font-semibold hover:text-primary mr-3'>Invest</h1>
                 </AccordionTrigger>
                 <AccordionContent >
                     {headerLinks.map((item,key)=>(
-                        <h1 className="py-1 font-semibold  hover:font-bold rounded-md hover:bg-accent px-2 text base capitalize"key={key}>
+                        <h1 className="py-1 font-semibold  hover:font-bold rounded-md hover:bg-accent px-2 xs:mb-1 xs:text-[15px] capitalize"key={key}>
                             <Link href={"/"}>{item}</Link>
                         </h1>
                     ))}

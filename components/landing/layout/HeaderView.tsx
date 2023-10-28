@@ -24,6 +24,6 @@ export default function HeaderView({children,className}:IHeaderView) {
           return ()=>{window.removeEventListener("scroll",handleScroll)}
     },[])
     return (
-    <div className={cn(`${isScrolled?"bg-white":""}`,className)}>{children}</div>
+    <div className={cn(`${isScrolled?"bg-white shadow-sm":"bg-page"}`,className)}>{children}</div>
   )
 }

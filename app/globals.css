@@ -3,12 +3,14 @@
 @tailwind utilities;
  
 @layer base {
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --page:#F2F7F8;
     --main:#00032B;
-    --main-hover:#00032B;
+    --shade:#4a5568;
+    --main-hover:#02074b;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -70,11 +72,14 @@
 }
  
 @layer base {
+  /* .test{
+    scale:100
+  } */
   * {
     @apply border-border;
   }
   body {
-    @apply text-foreground  text-sm bg-page;
+    @apply text-foreground  text-sm bg-page font-inter;
   }
   .body{
     @apply overflow-hidden
@@ -90,5 +95,11 @@
    }
    .menu-bar{
     @apply bg-main h-[3px]   rounded-sm w-full transition-all duration-300
+   }
+   .hero-text{
+    @apply text-3xl xs:text-4xl mb-4 my-4 sm:text-5xl md:text-5xl 
+   }
+   .header{
+    @apply text-xl sm:text-2xl font-semibold
    }
 }

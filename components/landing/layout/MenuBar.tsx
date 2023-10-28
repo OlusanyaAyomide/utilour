@@ -13,7 +13,7 @@ export default function MenuBar() {
             <span className={`menu-bar ${isTriggered?"-rotate-45 h-[3px] origin-left translate-y-[0.7px]":""}`}></span>
         </button>
         {
-        isTriggered && <div className={`fixed  ${isScrolled?"bg-white":""} inset-0 z-30`}>
+        isTriggered && <div className={`fixed lg:hidden  ${isScrolled?"bg-white":"bg-page"} inset-0 z-30`}>
             <NavSection/>
         </div>
         }
