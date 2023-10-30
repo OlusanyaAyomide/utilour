@@ -86,8 +86,18 @@ module.exports = {
             opacity:1
           },
         },
+        fadeUp1:{
+          "0%,20%":{
+            transform:"translateY(160px)",
+            opacity:0
+          },
+          "100%":{
+            transform:"translateY(0px)",
+            opacity:1
+          },
+        },
         fadeUpDelay:{
-          "0% , 50%":{
+          "0% , 60%":{
             transform:"translateY(160px)",
             opacity:0
           },
@@ -154,11 +164,12 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         fadeUp:"fadeup 0.5s linear 1",
-        fadeUpDelay:"fadeUpDelay 0.8s linear 1",
-        popinDelay:"popinDelay 1s linear 1",
-        fadeUpDelay1:"fadeUpDelay1 1.4s linear 1",
-        fadeUpDelay2:"fadeUpDelay1 2s linear 1",
-        fadeUpDelay3:"fadeUpDelay1 2.4s linear 1",
+        fadeUphero:"fadeUp1 1s linear infinite",
+        fadeUpDelay:"fadeUpDelay 1.2s linear 1",
+        popinDelay:"popinDelay 1.4s linear 1",
+        fadeUpDelay1:"fadeUpDelay1 1.8s linear 1",
+        fadeUpDelay2:"fadeUpDelay1 2.2s linear 1",
+        fadeUpDelay3:"fadeUpDelay1 2.6s linear 1",
         custombounce:"customBounce 8s linear infinite",
         fadeinView:"fadeup 0.75s linear 1"
       },

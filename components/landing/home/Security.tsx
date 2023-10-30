@@ -21,11 +21,6 @@ export default function Security() {
                 </h1>
             </div>
         </TriggerView>
-        <TriggerView className='opacity-0 mt-12' active='animate-fadeinView opacity-100'>
-            <h1 className="header mb-4">{Typography.growthHeader}</h1>
-            <h1 className="text-shade">{Typography.growthContent}</h1>
-            <h1 className='mt-1 font-medium'>Get Insights on growth</h1>
-        </TriggerView>
     </div>
 
   )
