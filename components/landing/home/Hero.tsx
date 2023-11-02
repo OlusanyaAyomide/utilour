@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Icons } from '@/utils/Icons'
 import { Typography } from '@/utils/constants'
 import Image from 'next/image'
-
+import Link from "next/link"
 
 export default function Hero() {
   return (
@@ -12,13 +12,16 @@ export default function Hero() {
         <h1 className="text-3xl xs:text-4xl mb-4 my-4 sm:text-5xl md:text-5xl max-lg:text-center  font-semibold animate-fadeUp">{Typography.hero}
         </h1>
         <h1 className="text-shade mb-12 text-sm max-lg:text-center animate-fadeUpDelay">{Typography.heroContent}</h1>
-        <Button className='group px-6 h-10 max-lg:mx-auto hover:pr-12 transiton-all duraton-300 rounded-2xl'>
-          <span>Start invest now</span>
+        <Link href ="/user/signup">
+          <Button className='group px-6 h-10 max-lg:mx-auto hover:pr-12 transiton-all duraton-300 rounded-2xl'>
+            <span>Start invest now</span>
 
-          <span className='transition-all ml-2 group-hover:translate-x-8 duration-200'>
-            <Icons.arrowRight className = "text-white text-lg"/>
-          </span>
-        </Button>
+            <span className='transition-all ml-2 group-hover:translate-x-8 duration-200'>
+              <Icons.arrowRight className = "text-white text-lg"/>
+            </span>
+          </Button>
+        </Link>
+
       </div>
       <div className="lg:pl-2 w-full animate-custombounce lg:w-6/12 mt-8 xs:mt-12 lg:mt-0">
         <div className="max-w-[265px] animate-popinDelay xs:max-w-[300px] sm:max-w-[440px] mx-auto  relative h-[412px] z-20">

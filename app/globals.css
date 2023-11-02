@@ -7,10 +7,11 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-    --page:#F2F7F8;
+    --page:#f6fcfd;
     --main:#00032B;
     --shade:#4a5568;
     --main-hover:#02074b;
+    --support:#b83280;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -81,9 +82,6 @@
   body {
     @apply text-foreground  text-sm bg-page font-inter;
   }
-  .body{
-    @apply overflow-hidden
-  }
   .paddingx{
     @apply px-2 xs:px-4 sm:px-6 lg:px-10
    }
@@ -102,4 +100,7 @@
    .header{
     @apply text-xl sm:text-2xl font-semibold
    }
+   .full-shadow{
+    @apply shadow-[0_0_16px_#0000001f] 
+  }
 }

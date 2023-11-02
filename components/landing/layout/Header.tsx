@@ -44,7 +44,10 @@ export default function Header() {
         <div className="shrink-0 flex-center">
             <div className='flex-center max-md:mr-2 relative z-40'>
                 <Button className='border-primary max-sm:hidden mr-3 px-7 rounded-2xl' variant={'outline'}>Login</Button>
-                <Button className='text-white px-7  hover:text-white  rounded-2xl '>Signup</Button>
+
+                <Link href={"/user/signup"}>
+                    <Button className='text-white px-7  hover:text-white  rounded-2xl '>Signup</Button>
+                </Link>
             </div>
             <MenuBar/>
         </div>

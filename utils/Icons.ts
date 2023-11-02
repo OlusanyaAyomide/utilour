@@ -3,13 +3,15 @@ import {RiMenu3Fill} from "react-icons/ri"
 import {BsArrowRight} from "react-icons/bs"
 import {BiSolidLock} from "react-icons/bi"
 import {MdOutlineSubdirectoryArrowRight} from "react-icons/md"
-
+import {AiFillEye,AiFillEyeInvisible} from "react-icons/ai"
 
 export const Icons ={
     close:GrClose,
     menu:RiMenu3Fill,
     arrowRight:BsArrowRight,
     lock:BiSolidLock,
-    subdirect:MdOutlineSubdirectoryArrowRight
+    subdirect:MdOutlineSubdirectoryArrowRight,
+    seeeye:AiFillEye,
+    dasheye:AiFillEyeInvisible,
     
 }

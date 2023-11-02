@@ -29,6 +29,7 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         page:"var(--page)",
+        support:'var(--support)',
         main:{
           DEFAULT:'var(--main)',
           foreground:'var(--main-hover)'
@@ -157,6 +158,14 @@ module.exports = {
             transform: "translateY(-5px)"
           },
         },
+        authBg:{
+          "0%":{
+            "background-position":"0 0"
+          },
+          "100%":{
+           "background-position":"100px 100px" 
+          }
+        }
 
       },
 
@@ -171,7 +180,8 @@ module.exports = {
         fadeUpDelay2:"fadeUpDelay1 2.2s linear 1",
         fadeUpDelay3:"fadeUpDelay1 2.6s linear 1",
         custombounce:"customBounce 8s linear infinite",
-        fadeinView:"fadeup 0.75s linear 1"
+        fadeinView:"fadeup 0.75s linear 1",
+        movebg:"authBg 30s linear infinite"
       },
       screens:{ 
         xs:"340px",
@@ -180,6 +190,9 @@ module.exports = {
         md:"810px",
         lg:"1060px",
         xl:"1200px",
+    },
+    backgroundImage:{
+      dots:"radial-gradient(circle,#4a5568 2%, transparent 2%)"
     },
     },
   },
