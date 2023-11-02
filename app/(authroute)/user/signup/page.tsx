@@ -11,7 +11,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { A_SignUpUser } from '@/actions/authActions'
 
-export default function page() {
+export default function SignUp() {
 
 
   const {register,handleSubmit,watch,formState:{errors},setValue} = useForm<ISignUpForm>({
