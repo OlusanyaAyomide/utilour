@@ -1,22 +1,22 @@
 import { cn } from '@/lib/utils'
 import React from 'react'
 import { UseFormRegister } from 'react-hook-form'
-import { ISignUpForm } from '@/interfaces/client-interface'
+import { ILogInForm, ISignUpForm } from '@/interfaces/client-interface'
 
-type ISignUpField = 'firstName'|'lastName'|'email'|'password'|'confirmPassword' | 'referralId'
+type ILogInField = 'email'|'password'
 
 interface IInputField{
-    name:ISignUpField
+    name:ILogInField
     error?:string
     className?:string
     children?:React.ReactNode
     placeholder:string
     label:string
     type?:"email" | "password" | "text"
-    register:UseFormRegister<ISignUpForm>
+    register:UseFormRegister<ILogInForm>
 
 }
-export default function InputField({className,error,children,name,placeholder,label,type = "text",register}:IInputField) {
+export default function LogInField({className,error,children,name,placeholder,label,type = "text",register}:IInputField) {
   return (
     <div className={cn("relative mb-3 pb-2",className)}>
          <span className="block text-main font-medium mb-1 ml-1">{label}</span>

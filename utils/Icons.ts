@@ -4,6 +4,7 @@ import {BsArrowRight} from "react-icons/bs"
 import {BiSolidLock} from "react-icons/bi"
 import {MdOutlineSubdirectoryArrowRight} from "react-icons/md"
 import {AiFillEye,AiFillEyeInvisible} from "react-icons/ai"
+import {FcGoogle} from "react-icons/fc"
 
 export const Icons ={
     close:GrClose,
@@ -13,5 +14,6 @@ export const Icons ={
     subdirect:MdOutlineSubdirectoryArrowRight,
     seeeye:AiFillEye,
     dasheye:AiFillEyeInvisible,
+    google:FcGoogle
     
 }

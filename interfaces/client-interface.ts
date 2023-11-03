@@ -1,8 +1,12 @@
-export interface ISignUpForm{
+
+export interface ILogInForm{
+    email:string
+    password:string   
+}
+
+export interface ISignUpForm extends ILogInForm{
     firstName:string
     lastName:string
-    email:string
-    password:string
     confirmPassword:string
     referralId?:string
     isAgreed:boolean

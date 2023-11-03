@@ -1,7 +1,7 @@
 'use client'
 import InputField from '@/components/landing/auth/InputField'
 import React, { useState, useTransition } from 'react'
-import { useForm, SubmitHandler,UseFormRegister } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { signUpSchema } from '@/utils/validations'
 import { ISignUpForm } from '@/interfaces/client-interface'
@@ -22,9 +22,13 @@ export default function SignUp() {
     const [confirmHidden,setConfirmHidden] = useState<boolean>(true)
 
     const [pending,startTransition] = useTransition()
+    console.log(pending)
     
     const onSubmit:SubmitHandler<ISignUpForm>=(data)=>{
-        startTransition(()=>{A_SignUpUser(data)})
+        startTransition(async()=>{
+            const result = await A_SignUpUser(data)
+            console.log(result)
+        })
         console.log(data)
     }
     
@@ -100,9 +104,18 @@ export default function SignUp() {
             </Link>
             <span className='absolute -bottom-2 text-[12px] text-red-500 left-2'>{errors.isAgreed?.message}</span>
         </div>
-        <Button className='h-12 w-full flex items-center text-white bg-main mt-4'>
+        <Button className='h-12 w-full flex items-center text-white  mt-4'>
             Create Account
         </Button>
+        <Button variant={"outline"} className='h-12 text-foreground flex bg-gray-100 hover:bg-gray-200 w-full  items-center mt-4'>
+           <Icons.google className = "text-2xl"/>
+           <span className='ml-2'>Sign Up With Google </span>
+        </Button>
+        <Link href={"/user/signin"}>
+            <h1 className="mt-2 mb-3 text-main hover:underline text-[13px] text-center">
+                <span>sign in instead</span>   
+             </h1>
+        </Link>
     </form>
   )
 }
