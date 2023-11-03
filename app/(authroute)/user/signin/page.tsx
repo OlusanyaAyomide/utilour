@@ -1,16 +1,17 @@
 'use client'
 
-import React, { useState, useTransition } from 'react'
+import React, { useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { logInSchema, signUpSchema } from '@/utils/validations'
-import { ILogInForm, ISignUpForm } from '@/interfaces/client-interface'
+import { logInSchema } from '@/utils/validations'
+import { ILogInForm} from '@/interfaces/client-interface'
 import { Icons } from '@/utils/Icons'
-import { Checkbox } from '@/components/ui/checkbox'
+
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { A_SignUpUser } from '@/actions/authActions'
+import { A_SignInUser, A_SignUpUser } from '@/actions/authActions'
 import LogInField from '@/components/landing/auth/LogInField'
+import useServerData from '@/hooks/useServerData'
 
 export default function SignIn() {
 
@@ -21,19 +22,16 @@ export default function SignIn() {
 
     const [isHidden,setIsHidden] = useState<boolean>(true)
 
-    const [pending,startTransition] = useTransition()
+    const {pending,getData} = useServerData(A_SignInUser)
     console.log(pending)
-    
-    const onSubmit:SubmitHandler<ILogInForm>=(data)=>{
-        startTransition(async()=>{
-            // const result = await A_SignUpUser(data)
-            // console.log(result)
-        })
-        console.log(data)
+
+    const onSubmit:SubmitHandler<ILogInForm>= async (data)=>{
+      const result = await getData<{message:string}>(data)
+      console.log(result)
     }
     
   return (
-    <form onSubmit={handleSubmit(onSubmit)} >
+    <form onSubmit={handleSubmit(onSubmit)} className="full-shadow mb-10 bg-white px-2 py-8 min-h-[200px] sm:px-3 rounded-xl" >
         <h1 className="font-bold text-main mb-6 text-center text-xl">Welcome Back</h1>
 
         <LogInField
@@ -44,7 +42,6 @@ export default function SignIn() {
             register={register} 
             error={errors.email?.message}
         />
-
 
         <LogInField
             name='password'

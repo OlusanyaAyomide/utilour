@@ -30,7 +30,6 @@ export default function Header() {
                                         </h1>
                                     </div>
                                     </Link>
-
                                 ))}
                             </div>
                         </NavigationMenuContent>
@@ -43,8 +42,10 @@ export default function Header() {
         </div>
         <div className="shrink-0 flex-center">
             <div className='flex-center max-md:mr-2 relative z-40'>
-                <Button className='border-primary max-sm:hidden mr-3 px-7 rounded-2xl' variant={'outline'}>Login</Button>
-
+                <Link href={"/user/signin"}>
+                     <Button className='border-primary max-sm:hidden mr-3 px-7 rounded-2xl' variant={'outline'}>Login
+                     </Button>
+                </Link>
                 <Link href={"/user/signup"}>
                     <Button className='text-white px-7  hover:text-white  rounded-2xl '>Signup</Button>
                 </Link>

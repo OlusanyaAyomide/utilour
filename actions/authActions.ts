@@ -1,7 +1,7 @@
 'use server'
 import * as yup from "yup"
 import { ILogInForm, ISignUpForm } from "@/interfaces/client-interface";
-import { logInSchema, signUpSchema } from "@/utils/validations";
+import { logInSchema,signUpSchema } from "@/utils/validations";
 import catchAsync from "@/utils/catchAsync";
 
 // const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
@@ -19,18 +19,18 @@ import catchAsync from "@/utils/catchAsync";
 
 export const A_SignUpUser = catchAsync(async (data:ISignUpForm)=>{
     const isvalid = await signUpSchema.validate(data)   
-    console.log(isvalid)
-    return {message:"success"}
+    console.log(isvalid,"abc")
+    return {message:"successful"}
+})
+
+export const A_SignInUser = catchAsync(async (data:ILogInForm)=>{
+       console.log(data)
+       const validatedData = await logInSchema.validate(data)
+        return {message:"sucess"}
 })
 
 
-export async function A_LogInUser(data:ILogInForm){
+export const A_VerifyMail= catchAsync(async(data:{pin:string})=>{
     console.log(data)
-    const validatedData = await logInSchema.validate(data)
-    return {message:"sucess"}
-}
-
-// export const TestSignUp = catchAsync(()=>{
-//     return "test"
-// },)
-// export async function ASignUpUser(ca)
+    return {message:"Pin success"}
+})

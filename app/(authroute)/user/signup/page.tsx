@@ -1,6 +1,6 @@
 'use client'
 import InputField from '@/components/landing/auth/InputField'
-import React, { useState, useTransition } from 'react'
+import React, { useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { signUpSchema } from '@/utils/validations'
@@ -10,6 +10,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { A_SignUpUser } from '@/actions/authActions'
+import useServerData from '@/hooks/useServerData'
 
 export default function SignUp() {
 
@@ -21,19 +22,17 @@ export default function SignUp() {
     const [isHidden,setIsHidden] = useState<boolean>(true)
     const [confirmHidden,setConfirmHidden] = useState<boolean>(true)
 
-    const [pending,startTransition] = useTransition()
+  
+    const {pending,getData} = useServerData(A_SignUpUser)
     console.log(pending)
-    
-    const onSubmit:SubmitHandler<ISignUpForm>=(data)=>{
-        startTransition(async()=>{
-            const result = await A_SignUpUser(data)
-            console.log(result)
-        })
-        console.log(data)
-    }
+
+    const onSubmit:SubmitHandler<ISignUpForm>= async (data)=>{
+        const result = await getData<{message:string}>(data)
+        console.log(result)
+      }
     
   return (
-    <form onSubmit={handleSubmit(onSubmit)} >
+    <form onSubmit={handleSubmit(onSubmit)} className='full-shadow mb-10 bg-white px-2 py-8 min-h-[200px] sm:px-3 rounded-xl'>
         <h1 className="font-bold text-main mb-6 text-center text-xl">Create An Account</h1>
 
         <InputField
@@ -104,13 +103,16 @@ export default function SignUp() {
             </Link>
             <span className='absolute -bottom-2 text-[12px] text-red-500 left-2'>{errors.isAgreed?.message}</span>
         </div>
-        <Button className='h-12 w-full flex items-center text-white  mt-4'>
+
+        <Button className='h-12 w-full flex items-center text-white  mt-8'>
             Create Account
         </Button>
+
         <Button variant={"outline"} className='h-12 text-foreground flex bg-gray-100 hover:bg-gray-200 w-full  items-center mt-4'>
            <Icons.google className = "text-2xl"/>
            <span className='ml-2'>Sign Up With Google </span>
         </Button>
+
         <Link href={"/user/signin"}>
             <h1 className="mt-2 mb-3 text-main hover:underline text-[13px] text-center">
                 <span>sign in instead</span>   
