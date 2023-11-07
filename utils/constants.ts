@@ -1,3 +1,5 @@
+import { Icons } from "./Icons";
+
 export const navItems =[
     {
         text:"How it works",
@@ -38,3 +40,66 @@ export const Typography={
     unleashHeader:"Unleash your potential",
     unleashBase:"Say hello to organized digital solution that fits in your pocket"
 }
+
+
+export const sideBarMenu=[
+    {
+        text:"Home",
+        url:"/home",
+        icon:Icons.home,  
+    },
+    {
+        text:"U-Save",
+        url:"/u-save",
+        icon:Icons.u_save,  
+    },
+    {
+        text:"U-Bugga",
+        url:"/u-bugga",
+        icon:Icons.u_bugga,  
+    },
+    {
+        text:"U-Vest",
+        url:"/u-vest",
+        icon:Icons.u_vest,  
+    },
+    {
+        text:"U-Bucks",
+        url:"/u-bucks",
+        icon:Icons.u_bucks,  
+    },
+    {
+        text:"U-Stash",
+        url:"/u-stash",
+        icon:Icons.stash,  
+    },
+    {
+        text:"Transactions",
+        url:"/transactions",
+        icon:Icons.transactions,  
+    },
+    {
+        text:"Referrals",
+        url:"/referrals",
+        icon:Icons.gift,  
+    },
+    {
+        text:"Support",
+        url:"/support",
+        icon:Icons.support,  
+    },
+    {
+        text:"Settings",
+        url:"/settings",
+        icon:Icons.setting,  
+    },
+    {
+        text:"Logout",
+        url:"/logout",
+        icon:Icons.signout,  
+    },
+
+    
+
+
+]
