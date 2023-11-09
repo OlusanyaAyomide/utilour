@@ -81,7 +81,7 @@
     @apply border-border;
   }
   body {
-    @apply text-foreground  text-sm bg-page font-inter;
+    @apply text-foreground  text-[13px] bg-page font-inter;
   }
   .paddingx{
     @apply px-2 xs:px-4 sm:px-6 lg:px-10
@@ -105,6 +105,21 @@
     @apply shadow-[0_0_16px_#0000001f] 
   }
   .radial{
-    background-image: radial-gradient(circle at 100% 100%, green 60%, #FF5733 40%)
+    background-image: radial-gradient(circle at 85% 85%, transparent 65%, #f6fcfd 35%)
+  }
+   .default-scroll::-webkit-scrollbar {
+    @apply w-[3px] h-[3px]
+  }
+  .default-scroll::-webkit-scrollbar-thumb{
+   @apply bg-support opacity-70
+  }
+ .hide-scroll::-webkit-scrollbar {
+     @apply w-[3px] h-[3px] hidden
+ }
+ .hide-scroll::-webkit-scrollbar-thumb {
+     @apply bg-support opacity-70 hidden
+ }
+ .full-shadow {
+      @apply shadow-[0_0_6px_#0000001f] 
   }
 }
