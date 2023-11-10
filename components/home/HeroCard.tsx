@@ -25,7 +25,7 @@ export default function HeroCard({header,price,showCurrency = true}:IHeroCard) {
                     </HoverCardContent>
                 </HoverCard>  
             </h1>
-            <h1 className='text-xl text-support font-medium flex-center'>
+            <h1 className='text-[22px] text-support font-semibold flex-center'>
                 {showCurrency && <span>₦</span>}
                 <span className='ml-[2px]'>{price.toLocaleString()}</span>
             </h1>

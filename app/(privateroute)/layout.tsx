@@ -2,7 +2,9 @@ import Header from '@/components/layout/Header'
 import SideLayout from '@/components/layout/SideLayout'
 import React from 'react'
 
+
 export default function PrivateLayout({children}:{children:React.ReactNode}) {
+
   return (
     <div className='pt-12 max-w-[1400px] mx-auto'>
         <Header/>

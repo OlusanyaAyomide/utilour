@@ -1,3 +1,4 @@
+import Activities from '@/components/home/Activities'
 import HeroSection from '@/components/home/HeroSection'
 import DotScroller from '@/components/utils/DotScroller'
 import SectionView from '@/components/utils/SectionView'
@@ -9,11 +10,8 @@ export default function DashBoard() {
         <SectionView text='Oluwatobi Johnson' header='Welcome Back'/>
         <div className="px-2 sm:px-3">
             <HeroSection/>
+            <Activities/>
         </div>
-
-        {/* <DotScroller>
-          <div className='w-[1000px] bg-red-100 py-4'></div>
-        </DotScroller> */}
 
     </div>
   )

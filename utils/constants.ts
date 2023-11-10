@@ -49,35 +49,40 @@ export const sideBarMenu=[
         icon:Icons.home,  
     },
     {
-        text:"U-Save",
-        url:"/u-save",
+        text:"Save",
+        url:"/save",
         icon:Icons.u_save,  
     },
     {
-        text:"U-Bugga",
-        url:"/u-bugga",
-        icon:Icons.u_bugga,  
+        text:"Invest",
+        url:"/invest",
+        icon:Icons.invest,  
     },
-    {
-        text:"U-Vest",
-        url:"/u-vest",
-        icon:Icons.u_vest,  
-    },
-    {
-        text:"U-Bucks",
-        url:"/u-bucks",
-        icon:Icons.u_bucks,  
-    },
+    // {
+    //     text:"U-Bugga",
+    //     url:"/u-bugga",
+    //     icon:Icons.u_bugga,  
+    // },
+    // {
+    //     text:"U-Vest",
+    //     url:"/u-vest",
+    //     icon:Icons.u_vest,  
+    // },
+    // {
+    //     text:"U-Bucks",
+    //     url:"/u-bucks",
+    //     icon:Icons.u_bucks,  
+    // },
     {
         text:"U-Stash",
         url:"/u-stash",
         icon:Icons.stash,  
     },
-    {
-        text:"Transactions",
-        url:"/transactions",
-        icon:Icons.transactions,  
-    },
+    // {
+    //     text:"Transactions",
+    //     url:"/transactions",
+    //     icon:Icons.transactions,  
+    // },
     {
         text:"Referrals",
         url:"/referrals",

@@ -2,7 +2,7 @@ import {GrClose} from "react-icons/gr"
 import {RiMenu3Fill,RiCustomerService2Line} from "react-icons/ri"
 import {BsArrowRight} from "react-icons/bs"
 import {BiSolidLock} from "react-icons/bi"
-import {MdOutlineSubdirectoryArrowRight} from "react-icons/md"
+import {MdOutlineSubdirectoryArrowRight,MdOutlineDiamond} from "react-icons/md"
 import {AiFillEye,AiFillEyeInvisible,AiOutlineLogout,AiOutlineHome,AiOutlineGift,AiOutlineAppstore,AiOutlineToTop} from "react-icons/ai"
 import {FcGoogle} from "react-icons/fc"
 import {RiSecurePaymentFill} from "react-icons/ri"
@@ -46,6 +46,7 @@ export const Icons ={
     walletS:PiWalletFill,
     topUp:AiOutlineToTop,
     bank:BsBank2,
-    card:FaMoneyCheck
+    card:FaMoneyCheck,
+    invest:MdOutlineDiamond,
    
 }
