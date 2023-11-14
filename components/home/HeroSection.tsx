@@ -8,7 +8,7 @@ export default function HeroSection() {
   return (
     <>
         <DotScroller className='flex' style='md:hidden'>
-            <div className='mt-8 max-lg:mx-auto pb-2  md:justify-between md:w-[95vw] lg:w-fit flex-center'>
+            <div className='mt-8 lg:mt-3 max-lg:mx-auto pb-2  md:justify-between md:w-[95vw] lg:w-fit flex-center'>
                 <HeroCard header='Total Revenue' price={2400}/>
                 <HeroCard header='Overall perfoarmance' price={"75%"} showCurrency={false}/>
                 <HeroCard header='Total referralls' price={24} showCurrency={false}/>

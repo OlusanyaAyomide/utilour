@@ -192,7 +192,9 @@ module.exports = {
         xl:"1200px",
     },
     backgroundImage:{
-      dots:"radial-gradient(circle,#4a5568 2%, transparent 2%)"
+      dots:"radial-gradient(circle,#4a5568 2%, transparent 2%)",
+      deepBlue:"url('/deepBlue.jpg')",
+      deepPurple:"url('/deepPurple.jpg')"
     },
     },
   },

@@ -7,7 +7,7 @@ import {AiFillEye,AiFillEyeInvisible,AiOutlineLogout,AiOutlineHome,AiOutlineGift
 import {FcGoogle} from "react-icons/fc"
 import {RiSecurePaymentFill} from "react-icons/ri"
 import {PiHandCoinsBold,PiFlowerLotusLight,PiPaintBucket} from "react-icons/pi"
-import {SiUpstash} from "react-icons/si"
+import { PiFlowerLotus } from "react-icons/pi";
 import {BsGraphUpArrow} from "react-icons/bs"
 import {LuSettings} from "react-icons/lu"
 import {FiMenu} from "react-icons/fi"
@@ -17,7 +17,7 @@ import {HiOutlineInformationCircle} from "react-icons/hi"
 import {PiWalletFill} from "react-icons/pi"
 import {BsBank2} from "react-icons/bs"
 import {FaMoneyCheck} from "react-icons/fa"
-
+import { CiVault } from "react-icons/ci";
 
 export const Icons ={
     close:GrClose,
@@ -48,5 +48,7 @@ export const Icons ={
     bank:BsBank2,
     card:FaMoneyCheck,
     invest:MdOutlineDiamond,
+    vault:CiVault,
+    flower:PiFlowerLotus
    
 }

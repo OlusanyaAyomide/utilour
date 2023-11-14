@@ -7,7 +7,7 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-    --page:#f6fcfd;
+    --page:#f0f9fc;
     /* --main:#00032B; */
     --main: #00032B;
     --shade:#4a5568;
@@ -105,7 +105,7 @@
     @apply shadow-[0_0_16px_#0000001f] 
   }
   .radial{
-    background-image: radial-gradient(circle at 85% 85%, transparent 65%, #f6fcfd 35%)
+    background-image: radial-gradient(circle at 85% 85%, transparent 65%, var(--page) 35%)
   }
    .default-scroll::-webkit-scrollbar {
     @apply w-[3px] h-[3px]
@@ -121,5 +121,11 @@
  }
  .full-shadow {
       @apply shadow-[0_0_6px_#0000001f] 
+  }
+  .active-nav{
+    @apply relative before:absolute before:bg-support before:w-[40%] before:bottom-0 before:left-11 before:h-[3px]
+  }
+  .pad{
+    @apply px-2 sm:px-3
   }
 }
