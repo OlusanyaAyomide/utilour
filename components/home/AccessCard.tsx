@@ -14,7 +14,7 @@ interface IAccessCard{
 export default function AccessCard({Icon,url,className,text,ngClass}:IAccessCard) {
   return (
     <Link href={url}>
-        <div className={cn("px-6 py-1 mr-5 cursor-pointer rounded-[32px] flex-center",className)}>
+        <div className={cn("px-6 min-w-[160px] py-1 mr-3 sm:mr-5 cursor-pointer rounded-[32px] flex-center",className)}>
             <div className="h-10 w-10 grid place-items-center bg-white p-1 rounded-full">
                 <Icon 
                 className = {cn("text-xl",ngClass)}/>

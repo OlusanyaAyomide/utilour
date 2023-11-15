@@ -16,7 +16,7 @@ export default function SideLayout({closeSheet}:ISideLayout) {
         <Logo className='lg:hidden xs:mb-5'/>
         {sideBarMenu.map((item,key)=>{
             const Icon =item.icon
-            const isActive = pathname === item.url
+            const isActive = pathname.startsWith(item.url)
         return(<Link href={item.url} key={key}>
             <button className={`w-full px-4 lg:px-6 flex-center mb-1 xs:mb-4  h-11  ${isActive?"pl-8 active-nav lg:pl-10 text-white":"hover:bg-accent"}`} onClick={closeSheet}>
                 <Icon className ={`text-2xl transition-all text-support duration-300 mr-2`}/>

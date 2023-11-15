@@ -15,7 +15,7 @@ export default function PrivateLayout({children}:{children:React.ReactNode}) {
                     <SideLayout/>
                 </div>
             </div>
-            <div className="grow bg-[#fcfdfd] min-h-[800px] h-full max-w-[100%] lg:max-w-[calc(100%-240px)]">
+            <div className="grow bg-[#fcfdfd] min-h-screen h-full max-w-[100%] lg:max-w-[calc(100%-240px)]">
                 {children}
             </div>
         </div>

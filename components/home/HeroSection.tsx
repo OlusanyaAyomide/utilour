@@ -20,15 +20,22 @@ export default function HeroSection() {
                 <AccessCard
                     className='bg-[#aa1dfc50]'
                     Icon={Icons.walletS}
-                    text='Fund wallet'
+                    text='U wallet'
                     ngClass='text-[#aa1dfc]'
                     url='/home'
                 />
                 <AccessCard
-                    className='bg-[#00032B50] pr-8'
+                    className='bg-[#fff34460]'
                     Icon={Icons.bank}
+                    text='U wallet'
+                    ngClass='text-[#fff344]'
+                    url='/home'
+                />
+                <AccessCard
+                    className='bg-[#00032B50] pr-8'
+                    Icon={Icons.flower}
                     text='Invest'
-                    ngClass='text-[#00032B]'
+                    ngClass='text-[#00032B] text-[22px]'
                     url='/invest'
                 />
                 <AccessCard

@@ -12,7 +12,8 @@
     --main: #00032B;
     --shade:#4a5568;
     --main-hover:#02074b;
-    --support:#aa1dfc;
+    /* --support:#aa1dfc; */
+    --support:#23C4E8;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
