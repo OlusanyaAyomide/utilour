@@ -1,6 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import AmountInput from '@/components/utils/AmountInput'
+import useMounted from '@/hooks/useMounted'
 import React, { useState } from 'react'
 
 const emergencyList =[50000,100000,200000,500000,1000000]
@@ -8,10 +9,11 @@ const emergencyList =[50000,100000,200000,500000,1000000]
 export default function EmergencySaving() {
 
     const [number,setNumber] = useState(20000)
+    const isRendered = useMounted()
     return (
     <div className='mt-3 pb-20'>
         <h1 className="font-medium mb-1">What is your goal</h1>
-        <AmountInput isNaira  showFlag pattern="[0-9]*" inputMode="numeric" className='mb-2'/>
+        {isRendered && <AmountInput isNaira autoFocus={false} showFlag pattern="[0-9]*" inputMode="numeric" className='mb-2'/>}
 
         <h1 className="font-medium mb-1">How much would you like to start with ?</h1>
         <AmountInput  isNaira value={number.toLocaleString()} showFlag pattern="[0-9]*" inputMode="numeric" className='mb-1'/>
