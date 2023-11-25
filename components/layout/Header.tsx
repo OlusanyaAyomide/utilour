@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import Logo from '../utils/Logo'
-import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet'
+import { Sheet, SheetContent, SheetTrigger,SheetOverlay, SheetClose } from '../ui/sheet'
 import { Icons } from '@/utils/Icons'
 import { Avatar, AvatarFallback } from '../ui/avatar'
 import SideLayout from './SideLayout'
@@ -9,17 +9,18 @@ import SideLayout from './SideLayout'
 export default function Header() {
     const [isOpen,setIsOpen] = useState<boolean>(false)
     return (
-    <div className='w-full fixed flex-center justify-between top-0 left-0 py-1 bg-page paddingx'>
+    <div className='w-full fixed  z-40 flex-center justify-between top-0 left-0 py-1 bg-page paddingx'>
         <div>
             <Logo className='max-lg:hidden'/>
-            <Sheet open={isOpen}>
+            <Sheet open={isOpen} onOpenChange={(val)=>{setIsOpen(val)}}>
                 <SheetTrigger asChild className='cursor-pointer' onClick={()=>{setIsOpen(true)}}>
                     <span className='lg:hidden '><Icons.navmenu className ="text-shade text-2xl cursor-pointer"/></span>
-                    
+                    {/* <SheetClose className='hidden'></SheetClose> */}
                 </SheetTrigger>
+                <SheetOverlay className='lg:hidden'></SheetOverlay>
                 <SheetContent onInteractOutside={()=>{
                     setIsOpen(false)
-                }} className='px-2 sm:max-w-[320px] max-xs:py-0 lg:hidden' side="left">
+                }} className='px-2 sm:max-w-[320px] max-xs:py-0 lg:hidden outline-none' side="left">
                     <SideLayout closeSheet={()=>setIsOpen(false)}/>
                 </SheetContent>
             </Sheet>

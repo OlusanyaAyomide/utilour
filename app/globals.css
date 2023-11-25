@@ -129,4 +129,11 @@
   .pad{
     @apply px-2 sm:px-3
   }
+  .default-scroll::-webkit-scrollbar {
+      @apply w-[7px] h-[3px]
+  }
+  
+  .default-scroll::-webkit-scrollbar-thumb {
+      @apply bg-border rounded-lg opacity-50
+    }
 }
