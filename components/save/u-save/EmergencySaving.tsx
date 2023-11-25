@@ -17,8 +17,8 @@ export default function EmergencySaving() {
         <AmountInput  isNaira value={number.toLocaleString()} showFlag pattern="[0-9]*" inputMode="numeric" className='mb-1'/>
         <div className="flex-center flex-wrap mt-4 pb-8">
             {emergencyList.map((item,key)=>(
-               <div className='flex-center w-4/12 mb-3'>
-                    <button key={key} onClick={()=>{setNumber(item)}} className={`h-4 w-4  rounded-full grid mr-3 place-content-center ${number === item?"bg-support":"bg-gray-300"}`}>
+               <div className='flex-center w-4/12 mb-3' key={key}>
+                    <button  onClick={()=>{setNumber(item)}} className={`h-4 w-4  rounded-full grid shrink-0 mr-1 xs:mr-3 place-content-center ${number === item?"bg-support":"bg-gray-300"}`}>
                         <span className='h-2 w-2 rounded-full bg-white'></span>
                     </button>
                     <span className='ml-1 text-[15px]'>{item.toLocaleString()}</span>
