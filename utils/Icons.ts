@@ -18,12 +18,13 @@ import {PiWalletFill} from "react-icons/pi"
 import {BsBank2} from "react-icons/bs";
 import {FaMoneyCheck} from "react-icons/fa";
 import { CiVault } from "react-icons/ci";
-import { IoMdClose } from "react-icons/io";
+import { AiOutlineThunderbolt } from "react-icons/ai";
 import { LiaAngleLeftSolid } from "react-icons/lia";
 
 
 export const Icons ={
     close:GrClose,
+    emergency:AiOutlineThunderbolt,
     menu:RiMenu3Fill,
     arrowRight:BsArrowRight,
     lock:BiSolidLock,

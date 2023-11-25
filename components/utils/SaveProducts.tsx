@@ -10,7 +10,7 @@ interface ISaveProducts{
 export default function SaveProducts({header,Icon,children,description}:ISaveProducts) {
   return (
     <div className='max-h-screen overflow-auto px-2 sm:px-3 default-scroll'>
-        <h1 className="font-semibold text-lg sm:text-xl mt-2 hover:text-support">{header}</h1>
+        <h1 className="font-semibold text-lg sm:text-xl mt-2 hover:text-support w-fit">{header}</h1>
         <div className="mt-6 mx-auto bg-gray-100 rounded-full h-28 grid place-content-center w-28">
             <Icon className = "text-[80px] text-support "/>
         </div>

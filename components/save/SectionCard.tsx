@@ -31,7 +31,7 @@ export default function SectionCard({className,showGradient=false,Icon,content,t
                 <SheetTrigger asChild disabled={true}>
                     <CardContent/>
                 </SheetTrigger>
-                <SheetContent side={"right"} className='px-2 border outline-none sm:px-3 py-4 w-full max-w-[490px] sm:max-w-[490px]'>
+                <SheetContent side={"right"} className='px-2 border outline-none sm:px-3 py-8 w-full max-w-[490px] sm:max-w-[490px]'>
                     {children}
                 </SheetContent>
             </Sheet>}

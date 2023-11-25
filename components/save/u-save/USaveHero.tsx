@@ -3,6 +3,7 @@ import BalanceCard from '../../utils/BalanceCard'
 import SectionCard from '../SectionCard'
 import { Icons } from '@/utils/Icons'
 import SaveProducts from '@/components/utils/SaveProducts'
+import EmergencySaving from './EmergencySaving'
 
 export default function USaveHero() {
   return (
@@ -26,13 +27,15 @@ export default function USaveHero() {
                     </SaveProducts>
                 </SectionCard>
             </div>
+
             <div className="w-full md:w-6/12 mb-6 md:pr-3">
-                <SectionCard title='Emergency Savings'content='Create a Plan for emergency' Icon={Icons.vault} showGradient >
-                    <SaveProducts header='Emergency Savings' description='Create a  Plan for Emergency' Icon={Icons.vault} >
-                        <span>Testing</span>
+                <SectionCard title='Emergency Savings'content='Create a Plan for emergency' Icon={Icons.emergency} showGradient >
+                    <SaveProducts header='Emergency Savings' description='Create a  Plan for Emergency' Icon={Icons.emergency} >
+                       <EmergencySaving/>
                     </SaveProducts>
                 </SectionCard>
             </div>
+            
             <div className="w-full md:w-6/12 md:pl-3">
                 <SectionCard title='AJO'content='Create a group of 3,6,9 to 12 people' Icon={Icons.flower} showGradient>
                      <SaveProducts header='AJO' description='Create a group Plan' Icon={Icons.vault} >
