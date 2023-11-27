@@ -1,6 +1,6 @@
 'use client'
 import InputField from '@/components/landing/auth/InputField'
-import React, { useState } from 'react'
+import React, { useState, useTransition } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { signUpSchema } from '@/utils/validations'
@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { A_SignUpUser } from '@/actions/authActions'
 import useServerData from '@/hooks/useServerData'
+import { signIn } from 'next-auth/react';
 
 export default function SignUp() {
 
@@ -24,16 +25,23 @@ export default function SignUp() {
 
   
     const {pending,getData} = useServerData(A_SignUpUser)
-    console.log(pending)
+    // const [pending,startTransition] = useTransition()
+    // console.log(pending)
 
     const onSubmit:SubmitHandler<ISignUpForm>= async (data)=>{
         const result = await getData<{message:string}>(data)
         console.log(result)
+        // const res = await signIn("credentials",{email:"testemail",password:"mypassword",verified:true})
+        // console.log(result)
+        // startTransition(async()=>{
+        //     // const result = await A_SignUpUser(data)
+        // })
       }
     
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='full-shadow mb-10 bg-white px-2 py-8 min-h-[200px] sm:px-3 rounded-xl'>
         <h1 className="font-bold text-main mb-6 text-center text-xl">Create An Account</h1>
+        <span>{pending?"loading":"not-loading"}</span>
 
         <InputField
             name='firstName'

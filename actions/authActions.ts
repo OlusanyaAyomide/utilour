@@ -1,27 +1,76 @@
 'use server'
-import * as yup from "yup"
+
 import { ILogInForm, ISignUpForm } from "@/interfaces/client-interface";
 import { logInSchema,signUpSchema } from "@/utils/validations";
-import catchAsync from "@/utils/catchAsync";
+import catchAsync,{redirectAsync} from "@/utils/server/catchAsync";
+import { mailSender } from "@/utils/server/sendMail";
+import prismaClient from "@/prisma/client";
+import { bcryptHash, generateOTP, getTimeFromNow } from "@/utils/server/util";
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
-// const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
-// const passwordRegex =/^(?=.*[A-Z])(?=.*[a-zA-Z0-9!@#$%^&*]).{8,}$/
-// const signUpSchema:yup.ObjectSchema<any> = yup.object({
-//     firstName:yup.string().required().min(4),
-//     lastName:yup.string().required().min(4),
-//     email:yup.string().required().matches(emailRegex,"email is not valid"),
-//     password:yup.string().required().matches(passwordRegex,"password is not strong enough"),
-//     referralId:yup.string().required(),
-//     confirmPassword:yup.string().required().oneOf([yup.ref("password")],'Password mismatch'),
-//     isAgreed:yup.boolean().required().oneOf([true],'Accept terms and conditions')
 
-// })
+export const A_SignUpUser =async (data:ISignUpForm)=>{
+    //validate input 
+    try{
+         await signUpSchema.validate(data)   
+    } catch(err:any){
+        const error = err.errors[0] || err.message || "Unknown error occured" 
+        return error
+    }
+ 
+    //check for existing email
+    const isExisting = await prismaClient.user.findUnique({
+        where:{
+            email:data.email
+        }
+    })
+    if(isExisting){
+        return {status:400,error:"Email Already in use"}
+    }
 
-export const A_SignUpUser = catchAsync(async (data:ISignUpForm)=>{
-    const isvalid = await signUpSchema.validate(data)   
-    console.log(isvalid,"abc")
-    return {message:"successful"}
-})
+    //create new user
+    const hashedPassword = await bcryptHash(data.password)
+    const newUser = await prismaClient.user.create({
+        data:{
+            email:data.email,
+            firstName:data.firstName,
+            lastName:data.lastName,
+            isVerified:false,
+            isGoogleUser:false,
+            password:hashedPassword
+        }      
+    })
+
+    const otpCode = generateOTP()
+    //create new OTP object
+    const newOtpObject = await prismaClient.mailVerificationOTp.create({
+        data:{
+            userId:newUser.id,
+            expiredTime:getTimeFromNow(Number(process.env.OTP_EXPIRY_MINUTE)),
+            otpCode
+        }
+    })
+
+    //set user cookie to be used while verfying the otp
+    cookies().set({
+        name:"verify-token",
+        value:newOtpObject.id,
+        maxAge:1000 * 60* Number(process.env.OTP_EXPIRY_MINUTE)
+    })
+    await mailSender({to:data.email,subject:"Utilor SignInOTp",body:otpCode})
+    
+    return redirect('/user/verify')
+}
+
+
+
+
+
+
+
+
+
 
 export const A_SignInUser = catchAsync(async (data:ILogInForm)=>{
        console.log(data)

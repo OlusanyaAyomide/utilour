@@ -23,7 +23,6 @@ export default function SignIn() {
     const [isHidden,setIsHidden] = useState<boolean>(true)
 
     const {pending,getData} = useServerData(A_SignInUser)
-    console.log(pending)
 
     const onSubmit:SubmitHandler<ILogInForm>= async (data)=>{
       const result = await getData<{message:string}>(data)

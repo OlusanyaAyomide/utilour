@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
+    "@prisma/client": "^5.6.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -17,11 +18,15 @@
     "@radix-ui/react-hover-card": "^1.0.7",
     "@radix-ui/react-navigation-menu": "^1.1.4",
     "@radix-ui/react-slot": "^1.0.2",
+    "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "create-next-app": "^14.0.0",
     "lucide-react": "^0.288.0",
     "next": "^14.0.0",
+    "next-auth": "^4.24.5",
+    "nodemailer": "^6.9.7",
+    "prisma": "^5.6.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
@@ -34,7 +39,9 @@
     "zustand": "^4.4.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",

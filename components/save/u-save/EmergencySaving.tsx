@@ -13,8 +13,9 @@ export default function EmergencySaving() {
     return (
     <div className='mt-3 pb-20'>
         <h1 className="font-medium mb-1">What is your goal</h1>
-        {isRendered && <AmountInput isNaira autoFocus={false} showFlag pattern="[0-9]*" inputMode="numeric" className='mb-2'/>}
-
+        {isRendered && 
+        <>
+        <AmountInput isNaira autoFocus={false} showFlag pattern="[0-9]*" inputMode="numeric" className='mb-2'/>
         <h1 className="font-medium mb-1">How much would you like to start with ?</h1>
         <AmountInput  isNaira value={number.toLocaleString()} showFlag pattern="[0-9]*" inputMode="numeric" className='mb-1'/>
         <div className="flex-center flex-wrap mt-4 pb-8">
@@ -29,6 +30,8 @@ export default function EmergencySaving() {
         </div>
 
         <AmountInput isNaira  placeholder='Name Of Plan' className='mb-1'/>
+        </>
+        }
         <Button className='text-white bg-support flex w-full mt-8' size={"lg"}>Submit Request</Button>
     </div>
   )

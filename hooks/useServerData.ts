@@ -1,4 +1,3 @@
-import { resolve } from "path"
 import { useTransition } from "react"
 
 interface CatchAsyncResult<T> {
@@ -17,20 +16,20 @@ export default function useServerData(action:serverAction){
         return(
             new Promise((resolve)=>{
                 startTransition(async()=>{
-                    try{
-                        const result = await action(data)
-                        if(result.data){
-                            resolve(result.data as T)
-                        }
-                        else{
-                            console.log("An error as occured from custom")
-                        }
+                    // try{
+                    const result = await action(data)
+                    if(result.data){
+                        resolve(result.data as T)
                     }
-                    catch(err:any){
-                        if(err.message === 'Failed to fetch'){
-                            console.log("network error")
+                    else{
+                        console.log("An error as occured from custom")
                         }
-                    }
+                    // }
+                    // catch(err:any){
+                    //     if(err.message === 'Failed to fetch'){
+                    //         console.log("network error")
+                    //     }
+                    // }
  
                 })
             })

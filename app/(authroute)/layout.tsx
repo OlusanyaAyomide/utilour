@@ -1,7 +1,9 @@
 import Logo from '@/components/utils/Logo'
 import React from 'react'
+import { redirect } from 'next/navigation'
 
 export default function AuthLayout({children}:{children:React.ReactNode}) {
+
   return (
     <div className='grid animate-movebg bg-dots bg-[length:100px_100px] overflow-x-hidden h-screen place-items-center relative'>
         <div className="rounded-full h-28 w-28 sm:h-44 sm:w-44 absolute  bg-support -top-10 -right-10"></div>

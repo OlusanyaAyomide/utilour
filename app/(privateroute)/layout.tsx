@@ -1,3 +1,4 @@
+import AutoLogOut from '@/components/layout/AutoLogOut'
 import Header from '@/components/layout/Header'
 import SideLayout from '@/components/layout/SideLayout'
 import Back from '@/components/utils/Back'
@@ -21,6 +22,7 @@ export default function PrivateLayout({children}:{children:React.ReactNode}) {
                 {children}
             </div>
         </div>
+        <AutoLogOut/>
     </div>
   )
 }
