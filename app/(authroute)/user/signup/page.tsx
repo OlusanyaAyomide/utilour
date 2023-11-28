@@ -12,9 +12,11 @@ import { Button } from '@/components/ui/button'
 import { A_SignUpUser } from '@/actions/authActions'
 import useServerData from '@/hooks/useServerData'
 import { signIn } from 'next-auth/react';
+import { useMutateData } from '@/hooks/useMutateData'
+import { useRouter } from 'next/navigation'
 
 export default function SignUp() {
-
+    const router = useRouter()
 
   const {register,handleSubmit,watch,formState:{errors},setValue} = useForm<ISignUpForm>({
     resolver:yupResolver(signUpSchema),defaultValues:{isAgreed:false}
@@ -22,26 +24,20 @@ export default function SignUp() {
 
     const [isHidden,setIsHidden] = useState<boolean>(true)
     const [confirmHidden,setConfirmHidden] = useState<boolean>(true)
+    const {data,isPending,mutate} = useMutateData({url:"/api/user/signup",onSuccess:(data)=>{
+        router.push("/user/verify")
+    }})
 
   
-    const {pending,getData} = useServerData(A_SignUpUser)
-    // const [pending,startTransition] = useTransition()
-    // console.log(pending)
 
     const onSubmit:SubmitHandler<ISignUpForm>= async (data)=>{
-        const result = await getData<{message:string}>(data)
-        console.log(result)
-        // const res = await signIn("credentials",{email:"testemail",password:"mypassword",verified:true})
-        // console.log(result)
-        // startTransition(async()=>{
-        //     // const result = await A_SignUpUser(data)
-        // })
+        mutate(data)
       }
     
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='full-shadow mb-10 bg-white px-2 py-8 min-h-[200px] sm:px-3 rounded-xl'>
         <h1 className="font-bold text-main mb-6 text-center text-xl">Create An Account</h1>
-        <span>{pending?"loading":"not-loading"}</span>
+        <span>{isPending?"loading":"not-loading"}</span>
 
         <InputField
             name='firstName'

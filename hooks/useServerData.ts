@@ -12,7 +12,7 @@ export default function useServerData(action:serverAction){
     const [pending,startTransition] = useTransition()
 
     
-    const getData = <T>(data:any):Promise<T>=>{
+    const mutateData = <T>(data:any):Promise<T>=>{
         return(
             new Promise((resolve)=>{
                 startTransition(async()=>{
@@ -35,5 +35,5 @@ export default function useServerData(action:serverAction){
             })
         )
     }
-    return {pending,getData}
+    return {pending,mutateData}
 }

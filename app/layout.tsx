@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter  } from "next/font/google"
 import './globals.css'
 import { TailwindIndicator } from '@/components/utils/TailwindIndicator'
+import ClientProvider from '@/components/utils/ClientProvider'
 
 
 
@@ -27,10 +28,12 @@ export default function RootLayout({
           <link rel="preconnect" href="https://fonts.gstatic.com"/>
           <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&display=swap" rel="stylesheet"></link>
         </head>
-      <body className={inter.className}>
-          {children}
-          <TailwindIndicator/>
-      </body>
+        <body className={inter.className}>
+            <ClientProvider>
+                {children}
+            </ClientProvider>
+            <TailwindIndicator/>
+        </body>
     </html>
   )
 }
