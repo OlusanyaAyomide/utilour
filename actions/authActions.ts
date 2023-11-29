@@ -1,6 +1,6 @@
 'use server'
 
-import { ILogInForm, ISignUpForm } from "@/interfaces/client-interface";
+import { ILogInForm, ISignUpForm } from "@/interfaces/interface";
 import { logInSchema,signUpSchema } from "@/utils/validations";
 import catchAsync,{redirectAsync} from "@/utils/server/catchAsync";
 import { mailSender } from "@/utils/server/sendMail";

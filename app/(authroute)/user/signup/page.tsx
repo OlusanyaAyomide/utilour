@@ -4,16 +4,14 @@ import React, { useState, useTransition } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { signUpSchema } from '@/utils/validations'
-import { ISignUpForm } from '@/interfaces/client-interface'
+import { ISignUpForm } from '@/interfaces/interface'
 import { Icons } from '@/utils/Icons'
 import { Checkbox } from '@/components/ui/checkbox'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { A_SignUpUser } from '@/actions/authActions'
-import useServerData from '@/hooks/useServerData'
-import { signIn } from 'next-auth/react';
 import { useMutateData } from '@/hooks/useMutateData'
 import { useRouter } from 'next/navigation'
+import RingSpinner from '@/components/utils/spinners/RingSpinner'
 
 export default function SignUp() {
     const router = useRouter()
@@ -37,7 +35,6 @@ export default function SignUp() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='full-shadow mb-10 bg-white px-2 py-8 min-h-[200px] sm:px-3 rounded-xl'>
         <h1 className="font-bold text-main mb-6 text-center text-xl">Create An Account</h1>
-        <span>{isPending?"loading":"not-loading"}</span>
 
         <InputField
             name='firstName'
@@ -108,11 +105,11 @@ export default function SignUp() {
             <span className='absolute -bottom-2 text-[12px] text-red-500 left-2'>{errors.isAgreed?.message}</span>
         </div>
 
-        <Button className='h-12 w-full flex items-center text-white  mt-8'>
-            Create Account
+        <Button disabled={isPending} className='h-12 w-full flex items-center text-white  mt-8'>
+            {!isPending?"Create Account":<RingSpinner/>}
         </Button>
 
-        <Button variant={"outline"} className='h-12 text-foreground flex bg-gray-100 hover:bg-gray-200 w-full  items-center mt-4'>
+        <Button disabled={isPending} variant={"outline"} className='h-12 text-foreground flex bg-gray-100 hover:bg-gray-200 w-full  items-center mt-4'>
            <Icons.google className = "text-2xl"/>
            <span className='ml-2'>Sign Up With Google </span>
         </Button>

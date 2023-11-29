@@ -1,12 +1,13 @@
 'use client'
 import { useEffect } from "react"
-
+import { signOut } from "next-auth/react"
 //window events that terminates the setTime out
 const events = ["load","mousemove","mousedown","click","scroll","keypress"]
 
 export default function AutoLogOut() {
     let timer:NodeJS.Timeout
-
+    const logOutTimer = 60000
+    // const logOutTimer = 180000
     const handleLogoutTimer = ()=>{
         if(!window){return}
           timer = setTimeout(() => {
@@ -18,7 +19,7 @@ export default function AutoLogOut() {
          });
          // logs out user
          logoutAction();
-    }, 180000); 
+    },logOutTimer); 
     }
 
     //remove timer if it exists
@@ -28,6 +29,7 @@ export default function AutoLogOut() {
     
     const logoutAction = () => {
         console.log("logout Triggered")
+        signOut({callbackUrl:"/user/signin"})
     };
 
     useEffect(() => {

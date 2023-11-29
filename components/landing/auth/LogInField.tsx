@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import React from 'react'
 import { UseFormRegister } from 'react-hook-form'
-import { ILogInForm, ISignUpForm } from '@/interfaces/client-interface'
+import { ILogInForm, ISignUpForm } from '@/interfaces/interface'
 
 type ILogInField = 'email'|'password'
 

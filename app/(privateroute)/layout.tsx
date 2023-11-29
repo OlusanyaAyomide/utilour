@@ -3,11 +3,19 @@ import Header from '@/components/layout/Header'
 import SideLayout from '@/components/layout/SideLayout'
 import Back from '@/components/utils/Back'
 import React from 'react'
+import { ISessionInterface } from '@/interfaces/interface'
+import { redirect } from 'next/navigation'
 
 
-export default function PrivateLayout({children}:{children:React.ReactNode}) {
+import { getServerSession } from 'next-auth'
+import { authOptions } from '../api/auth/[...nextauth]/route'
+import { getSession } from '@/utils/server/util'
 
-  return (
+export default async function PrivateLayout({children}:{children:React.ReactNode}) {
+ 
+    await getSession()
+
+    return (
     <div className='pt-12 max-w-[1400px] mx-auto'>
         <Header/>
         <div className="flex">

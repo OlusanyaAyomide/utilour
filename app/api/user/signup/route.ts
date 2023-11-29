@@ -6,7 +6,7 @@ import prismaClient from "@/prisma/client";
 import { bcryptHash, generateOTP, getTimeFromNow } from "@/utils/server/util";
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { ISignUpForm } from "@/interfaces/client-interface";
+import { ISignUpForm } from "@/interfaces/interface";
 
 
 
@@ -64,7 +64,7 @@ export async function POST(request:Request){
     cookies().set({
         name:"verify-token",
         value:newOtpObject.id,
-        maxAge:1000 * 60* Number(process.env.OTP_EXPIRY_MINUTE)
+        maxAge:60* Number(process.env.OTP_EXPIRY_MINUTE)
     })
     // await mailSender({to:data.email,subject:"Utilor SignInOTp",body:otpCode})
     return NextResponse.json({status:200,data:"verify email"})

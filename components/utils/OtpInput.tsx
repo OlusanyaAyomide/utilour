@@ -49,10 +49,11 @@ export default function OtpInput({action,header,buttonText,email}:IOtpInput) {
               border:"2px solid #C6F1EF",backgroundColor:"#f6fcfd",fontWeight:"bold",borderRadius:"14px"
             }}
               renderSeparator={<span className='mr-2'></span>}
-              renderInput={(props:any) => <input inputMode="numeric"  {...props} />}
+              renderInput={(props:any) => <input  inputMode="numeric"  {...props} />}
             />
         </div>
         
     </div>
   )
 }
+//disabled={true}

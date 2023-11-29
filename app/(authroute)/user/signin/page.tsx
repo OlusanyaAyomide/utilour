@@ -1,17 +1,18 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState,useTransition } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { logInSchema } from '@/utils/validations'
-import { ILogInForm} from '@/interfaces/client-interface'
+import { ILogInForm} from '@/interfaces/interface'
 import { Icons } from '@/utils/Icons'
-
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { A_SignInUser, A_SignUpUser } from '@/actions/authActions'
 import LogInField from '@/components/landing/auth/LogInField'
-import useServerData from '@/hooks/useServerData'
+import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
+import { useCustomToast } from '@/components/utils/useCustomToast'
+import RingSpinner from '@/components/utils/spinners/RingSpinner'
 
 export default function SignIn() {
 
@@ -19,16 +20,25 @@ export default function SignIn() {
   const {register,handleSubmit,watch,formState:{errors}} = useForm<ILogInForm>({
     resolver:yupResolver(logInSchema)
     })
-
+    const [pending,startTransition] = useTransition()
     const [isHidden,setIsHidden] = useState<boolean>(true)
-
-    const {pending,getData} = useServerData(A_SignInUser)
+    const router = useRouter()
+    const toaster = useCustomToast()
 
     const onSubmit:SubmitHandler<ILogInForm>= async (data)=>{
-      const result = await getData<{message:string}>(data)
-      console.log(result)
+        startTransition(async ()=>{
+          const {error,ok} = await signIn("credentials",{redirect:false,type:"signIn",password:data.password,email:data.email}) as unknown as {status:number,ok:boolean,error:string | null}
+          if(!ok && error){
+            toaster("bad",error)
+          }else{
+            router.push("/home")
+          }
+
+        })
+      // const result = await mutateData<{message:string}>(data)
+      // console.log(result)
     }
-    
+    console.log(pending)
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="full-shadow mb-10 bg-white px-2 py-8 min-h-[200px] sm:px-3 rounded-xl" >
         <h1 className="font-bold text-main mb-6 text-center text-xl">Welcome Back</h1>
@@ -55,8 +65,8 @@ export default function SignIn() {
               </button>
         </LogInField>
 
-        <Button className='h-12 w-full mt-8 flex items-center text-white bg-main'>
-            Sign In
+        <Button disabled={pending}  className='h-12 w-full mt-8 flex items-center text-white bg-main'>
+            {!pending?"Sign In":<RingSpinner/>}
         </Button>
         <Link href={"/user/signup"}>
             <h1 className="mt-2 mb-6 text-main hover:underline text-xs text-center">
