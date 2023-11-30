@@ -45,7 +45,19 @@ export const getSession = async ()=>{
 
     //redircect to verification if not verified
     if(!userData.isVerified){
+      console.log("veify redirect")
         return redirect("/user/verify")
     }
     else return userData
+}
+
+
+export const getAuthenticatedUser = async()=>{
+    const user = await getServerSession(authOptions)
+    if(!user){
+      return null
+    }else{
+       const userData = user as unknown as ISessionInterface 
+       return userData
+    }
 }

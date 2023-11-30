@@ -1,6 +1,7 @@
 import { useCustomToast } from '@/components/utils/useCustomToast';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios, { AxiosResponse ,AxiosError} from "axios"
+import { useRouter } from 'next/navigation';
 
 interface ImutateData{
     showError?:boolean
@@ -22,13 +23,14 @@ const fetcher = ({body,url}:{body:string,url:string})=>{
 export function useMutateData<T>({showError=true,url,onError=()=>{},onSuccess=()=>{},successText}:ImutateData){
 
     const toaster =useCustomToast()
-
+    const router = useRouter()
+    
     return useMutation({
         mutationKey:["post-request"],
         mutationFn:(body:any)=>{
             return fetcher({url,body})
         },
-        onSuccess:({data}:AxiosResponse<any>)=>{
+        onSuccess:(data:AxiosResponse<any>)=>{
             console.log(data)
             if(data.status === 200){
                 if(successText){
@@ -38,8 +40,16 @@ export function useMutateData<T>({showError=true,url,onError=()=>{},onSuccess=()
             }
             if(data.status === 400){
                 if(showError){
-                    toaster("bad",data.error)
+                    toaster("bad",data.data?.error)
                 }
+            }
+            if(data.status === 401){
+                toaster("bad","Please log in")
+                router.push("/user/signin")
+            }
+            if(data.status === 440){
+                toaster("session","Relog in to continue")
+                router.push("/user/signin")
             }
 
         },

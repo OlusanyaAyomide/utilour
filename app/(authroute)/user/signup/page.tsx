@@ -12,9 +12,11 @@ import { Button } from '@/components/ui/button'
 import { useMutateData } from '@/hooks/useMutateData'
 import { useRouter } from 'next/navigation'
 import RingSpinner from '@/components/utils/spinners/RingSpinner'
+import { useEmailVerification } from '@/store/useEmailverifcation'
 
 export default function SignUp() {
     const router = useRouter()
+    const {setStatus} = useEmailVerification()
 
   const {register,handleSubmit,watch,formState:{errors},setValue} = useForm<ISignUpForm>({
     resolver:yupResolver(signUpSchema),defaultValues:{isAgreed:false}
@@ -22,7 +24,9 @@ export default function SignUp() {
 
     const [isHidden,setIsHidden] = useState<boolean>(true)
     const [confirmHidden,setConfirmHidden] = useState<boolean>(true)
-    const {data,isPending,mutate} = useMutateData({url:"/api/user/signup",onSuccess:(data)=>{
+    const {isPending,mutate} = useMutateData({url:"/api/user/signup",onSuccess:(data)=>{
+        console.log(data,"from signUp")
+        setStatus(data?.email)
         router.push("/user/verify")
     }})
 

@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { useCustomToast } from '@/components/utils/useCustomToast'
 import RingSpinner from '@/components/utils/spinners/RingSpinner'
+import { useEmailVerification } from '@/store/useEmailverifcation'
 
 export default function SignIn() {
 
@@ -24,13 +25,18 @@ export default function SignIn() {
     const [isHidden,setIsHidden] = useState<boolean>(true)
     const router = useRouter()
     const toaster = useCustomToast()
+    const {setStatus} = useEmailVerification()
 
     const onSubmit:SubmitHandler<ILogInForm>= async (data)=>{
         startTransition(async ()=>{
           const {error,ok} = await signIn("credentials",{redirect:false,type:"signIn",password:data.password,email:data.email}) as unknown as {status:number,ok:boolean,error:string | null}
+          //show error message
           if(!ok && error){
             toaster("bad",error)
-          }else{
+          }
+          else{
+            toaster("good",`Welcome back`)
+            setStatus(data.email)
             router.push("/home")
           }
 

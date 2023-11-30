@@ -6,7 +6,7 @@ const events = ["load","mousemove","mousedown","click","scroll","keypress"]
 
 export default function AutoLogOut() {
     let timer:NodeJS.Timeout
-    const logOutTimer = 60000
+    const logOutTimer = 10000
     // const logOutTimer = 180000
     const handleLogoutTimer = ()=>{
         if(!window){return}

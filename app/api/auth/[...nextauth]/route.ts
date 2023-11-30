@@ -6,7 +6,8 @@ import NextAuth from "next-auth/next";
 import  CredentialsProvider  from "next-auth/providers/credentials";
 import { cookies } from 'next/headers'
 import prismaClient from "@/prisma/client";
-import { bcryptCompare } from "@/utils/server/util";
+import { bcryptCompare, generateOTP } from "@/utils/server/util";
+import { getTimeFromNow } from "@/utils/server/util";
 
 export const authOptions:NextAuthOptions={
     session:{
@@ -37,7 +38,7 @@ export const authOptions:NextAuthOptions={
                     //check if token in cookie is valid
                     const verificationToken = cookies().get("verify-token")
                     if(!verificationToken){
-                        throw Error("Session expired , relog In")
+                        throw Error("session expired , relog In")
                     }
                     //verify if cookie and otp matches
                     const test = await prismaClient.mailVerificationOTp.findMany({
@@ -56,12 +57,14 @@ export const authOptions:NextAuthOptions={
                             user:true
                         }
                     })
+                    console.log("otp",otpVerification?.user)
                     if(!otpVerification){
                         throw Error("OTP Input invalid")
                     }
                     //check if Otp has not expired
                     const currentDate =  new Date()
                     if(currentDate>otpVerification.expiredTime){
+
                         throw Error("OTP already expired")
                     }
                     //update user verfication status
@@ -73,10 +76,24 @@ export const authOptions:NextAuthOptions={
                             isVerified:true
                         }
                     })
-                    const {id,firstName,lastName,isVerified} = updatedUser
+                    const {id,firstName,lastName,isVerified,email} = updatedUser
+
+                    
+                    //delete used Otp
+                    await prismaClient.mailVerificationOTp.delete({
+                        where:{
+                            id:otpVerification.id
+                        }
+                    })
+
+                    //delete verification cookie
+                    if(cookies().has("verify-token")){
+                        cookies().delete('verify-token')
+                    }
+
                     //store user data in session
                     return{
-                        id,firstName,lastName,isVerified
+                        id,firstName,lastName,isVerified,email
                     }  
                 }
                 //validate for email /password credentials signIn
@@ -86,7 +103,7 @@ export const authOptions:NextAuthOptions={
                             email:data.email
                         },
                     })
-                    //check email presence
+                    //check if user email exists
                     if(!user){
                         throw Error("Invalid signIn details")
                     }
@@ -94,9 +111,32 @@ export const authOptions:NextAuthOptions={
                     if(!isPasswordValid){
                         throw Error("Invalid signIn details .")
                     }
-                    const {id,firstName,lastName,isVerified} = user
+                    const {id,firstName,lastName,isVerified,email} = user
+
+                    if(isVerified){
+                    //delete cookie if it exists for verified users 
+                        if(cookies().has("verify-token")){
+                            cookies().delete('verify-token')
+                        }
+                    }else{
+                        //create new OTP object for users with inverified email
+                        const otpCode = generateOTP()
+                        const newOtpObject = await prismaClient.mailVerificationOTp.create({
+                        data:{
+                            userId:id,
+                            expiredTime:getTimeFromNow(Number(process.env.OTP_EXPIRY_MINUTE)),
+                            otpCode
+                        }
+                        })
+                        cookies().set({
+                            name:"verify-token",
+                            value:newOtpObject.id,
+                            maxAge:60* Number(process.env.OTP_EXPIRY_MINUTE)
+                            })
+                    }
+
                     return{
-                        id,firstName,lastName,isVerified
+                        id,firstName,lastName,isVerified,email
                     }  
                 }
             throw Error ("Not processed")
@@ -105,18 +145,14 @@ export const authOptions:NextAuthOptions={
     ],
     callbacks:{
         jwt(params:any){
-            console.log(params,"firedd")
+
             const user = params.user  as any
             // console.log(user)
             console.log(params.user)
             return params
         },
         session({session,token,user}){
-            console.log("triggered")
-            console.log(token,"token session")
             
-            // console.log("sessio fired",token)
-            // console.log(token,"token",session,"session",user,"user")
             if(session.user){
                 const userSession = token?.token as unknown as any
                 return userSession.user

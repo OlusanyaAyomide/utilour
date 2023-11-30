@@ -7,18 +7,23 @@ import { signIn,signOut } from "next-auth/react"
 import { useCustomToast } from '@/components/utils/useCustomToast'
 import { useRouter } from 'next/navigation'
 import { Rings } from 'react-loader-spinner'
+import { useEmailVerification } from '@/store/useEmailverifcation'
+import VerifyButton from './VerifyButton'
+import Link from 'next/link'
 
 
 export default function VerifyMail() {
     const [pending,startTransiton] = useTransition()
+    const {activeEmail} = useEmailVerification()
     console.log(pending)
     const toaster = useCustomToast()
     const router = useRouter()
     return (
+    <>
     <div className='full-shadow mb-24 relative bg-white px-2 py-8 min-h-[200px] sm:px-3 rounded-xl'>
         <OtpInput   
             header='A verification mail has been sent to'
-            email='ayomideflex72@gmail.com'
+            email={activeEmail}
             action={async (pin)=>{
                 startTransiton(async ()=>{
                     const {error,ok} = await signIn("credentials",{redirect:false,type:"email",otp:pin}) as unknown as {status:number,ok:boolean,error:string | null}
@@ -27,7 +32,9 @@ export default function VerifyMail() {
                     }
                     else{
                         console.log("success")
-                        router.push("/home")
+                        router.replace("/home")
+                        router.refresh()
+                        // router.push("/home")
                         }
                     })
                 }}
@@ -45,6 +52,13 @@ export default function VerifyMail() {
                 />
         </div>}
         {/* <button className='px-3 py-1 border' onClick={()=>{signOut()}}>Sign Out</button> */}
+        <VerifyButton/>
     </div>
+    <h1 className="text-center mt-20">
+        <Link href="/user/signin" className='text-gray-900 hover:underline decoration-main'>Back to sign up</Link>
+    </h1>
+    
+    </>
+
   )
 }
