@@ -29,4 +29,5 @@ export interface ISessionInterface{
     firstName:string
     lastName:string
     isVerified:boolean
+    merchantID:string
 }

@@ -3,7 +3,7 @@ import { validateData } from "@/utils/server/withValidation";
 import { signUpSchema } from "@/utils/validations";
 import { mailSender } from "@/utils/server/sendMail";
 import prismaClient from "@/prisma/client";
-import { bcryptHash, generateOTP, getTimeFromNow } from "@/utils/server/util";
+import { bcryptHash, generateMerchantID, generateOTP, getTimeFromNow } from "@/utils/server/util";
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { ISignUpForm } from "@/interfaces/interface";
@@ -39,6 +39,7 @@ export async function POST(request:Request){
 
     //create new user
     const hashedPassword = await bcryptHash(body.password)
+    const merchantdID = `#${generateMerchantID()}`
     const newUser = await prismaClient.user.create({
         data:{
             email:body.email,
@@ -46,6 +47,7 @@ export async function POST(request:Request){
             lastName:body.lastName,
             isVerified:false,
             isGoogleUser:false,
+            merchantID:merchantdID,
             password:hashedPassword
         }      
     })

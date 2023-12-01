@@ -17,6 +17,7 @@ model User {
     isVerified          Boolean
     isGoogleUser        Boolean
     password            String
+    merchantID          String
     MailVerificationOTp MailVerificationOTp[]
 }
 

@@ -76,7 +76,7 @@ export const authOptions:NextAuthOptions={
                             isVerified:true
                         }
                     })
-                    const {id,firstName,lastName,isVerified,email} = updatedUser
+                    const {id,firstName,lastName,isVerified,email,merchantID} = updatedUser
 
                     
                     //delete used Otp
@@ -93,7 +93,7 @@ export const authOptions:NextAuthOptions={
 
                     //store user data in session
                     return{
-                        id,firstName,lastName,isVerified,email
+                        id,firstName,lastName,isVerified,email,merchantID
                     }  
                 }
                 //validate for email /password credentials signIn
@@ -111,7 +111,7 @@ export const authOptions:NextAuthOptions={
                     if(!isPasswordValid){
                         throw Error("Invalid signIn details .")
                     }
-                    const {id,firstName,lastName,isVerified,email} = user
+                    const {id,firstName,lastName,isVerified,email,merchantID} = user
 
                     if(isVerified){
                     //delete cookie if it exists for verified users 
@@ -136,7 +136,7 @@ export const authOptions:NextAuthOptions={
                     }
 
                     return{
-                        id,firstName,lastName,isVerified,email
+                        id,firstName,lastName,isVerified,email,merchantID
                     }  
                 }
             throw Error ("Not processed")
