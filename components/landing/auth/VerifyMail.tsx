@@ -55,7 +55,7 @@ export default function VerifyMail() {
         <VerifyButton/>
     </div>
     <h1 className="text-center mt-20">
-        <Link href="/user/signin" className='text-gray-900 hover:underline decoration-main'>Back to sign up</Link>
+        <Link href="/user/signup" className='text-gray-900 hover:underline decoration-main'>Back to sign up</Link>
     </h1>
     
     </>

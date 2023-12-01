@@ -45,6 +45,6 @@ export async function POST(request:Request){
         value:otpCode.id,
         maxAge:60* Number(process.env.OTP_EXPIRY_MINUTE)
     })
-    mailSender({to:token.user.email,subject:"Utilor SignInOTp",body:otpCode?.otpCode,name:`${token.user.firstName} ${token.user.lastName}`})
+    await mailSender({to:token.user.email,subject:"Utilor SignInOTp",body:otpCode?.otpCode,name:`${token.user.firstName} ${token.user.lastName}`})
     return NextResponse.json({status:200,data:"verify email"}) 
 }
