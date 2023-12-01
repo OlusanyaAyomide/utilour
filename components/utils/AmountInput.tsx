@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils'
 import React from 'react'
 import { Input } from '../ui/input'
 import CurencyFlag from './CurencyFlag'
+
 interface IAmountInput extends  React.InputHTMLAttributes<HTMLInputElement>{
     isNaira?:boolean
     showFlag?:boolean

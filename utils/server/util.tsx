@@ -39,6 +39,7 @@ export async function  bcryptCompare({password,hashedPassword}:{password:string,
 export const getSession = async ()=>{
     const user = await getServerSession(authOptions)
     if(!user){
+      console.log("sessionredirect")
       return redirect("/user/signin")
     }
     const userData = user as unknown as ISessionInterface

@@ -4,6 +4,7 @@ import SectionCard from '../SectionCard'
 import { Icons } from '@/utils/Icons'
 import SaveProducts from '@/components/utils/SaveProducts'
 import EmergencySaving from './EmergencySaving'
+import ForU from './ForU'
 
 export default function USaveHero() {
   return (
@@ -14,9 +15,9 @@ export default function USaveHero() {
         <BalanceCard amount='₦ 100,000.00' description='Available Balance on U Save' imageCode='NG'/>
         <div className="-mt-5 px-3 sm:px-10 lg:px-8 flex flex-wrap md:flex-row">
             <div className="w-full md:w-6/12 mb-6 md:pr-3">
-                <SectionCard title='For U'content='Create a new plan' Icon={Icons.vault} showGradient >
-                    <SaveProducts header='For U' description='Create a new plan' Icon={Icons.vault}>
-                        <span>Testing</span>
+                <SectionCard title='For U'content='Create a new plan' Icon={Icons.foru} showGradient >
+                    <SaveProducts header='For U' description='Create a new plan' Icon={Icons.foru}>
+                       <ForU/>
                     </SaveProducts>
                 </SectionCard>
             </div>
@@ -37,8 +38,8 @@ export default function USaveHero() {
             </div>
             
             <div className="w-full md:w-6/12 md:pl-3">
-                <SectionCard title='AJO'content='Create a group of 3,6,9 to 12 people' Icon={Icons.flower} showGradient>
-                     <SaveProducts header='AJO' description='Create a group Plan' Icon={Icons.vault} >
+                <SectionCard title='AJO'content='Create a group of 3,6,9 to 12 people' Icon={Icons.ajo} showGradient>
+                     <SaveProducts header='AJO' description='Create a group Plan' Icon={Icons.ajo} >
                         <span>Testing</span>
                     </SaveProducts>
                 </SectionCard>

@@ -3,12 +3,11 @@ import {RiMenu3Fill,RiCustomerService2Line} from "react-icons/ri"
 import {BsArrowRight} from "react-icons/bs"
 import {BiSolidLock} from "react-icons/bi"
 import {MdOutlineSubdirectoryArrowRight,MdOutlineDiamond} from "react-icons/md"
-import {AiFillEye,AiFillEyeInvisible,AiOutlineLogout,AiOutlineHome,AiOutlineGift,AiOutlineAppstore,AiOutlineToTop} from "react-icons/ai"
+import {AiFillEye,AiFillEyeInvisible,AiOutlineLogout,AiOutlineHome,AiOutlineGift, AiOutlineThunderbolt,AiOutlineAppstore,AiOutlineToTop} from "react-icons/ai"
 import {FcGoogle} from "react-icons/fc"
 import {RiSecurePaymentFill} from "react-icons/ri"
 import {PiHandCoinsBold,PiFlowerLotusLight,PiPaintBucket} from "react-icons/pi"
 import { PiFlowerLotus } from "react-icons/pi";
-import {BsGraphUpArrow} from "react-icons/bs"
 import {LuSettings} from "react-icons/lu"
 import {FiMenu} from "react-icons/fi"
 import {IoMdNotificationsOutline} from "react-icons/io"
@@ -16,13 +15,18 @@ import {GoTriangleDown,GoGraph} from "react-icons/go"
 import {HiOutlineInformationCircle} from "react-icons/hi"
 import {PiWalletFill} from "react-icons/pi"
 import {BsBank2} from "react-icons/bs";
-import {FaMoneyCheck} from "react-icons/fa";
+import {FaMoneyCheck, FaHandHoldingUsd} from "react-icons/fa";
 import { CiVault } from "react-icons/ci";
-import { AiOutlineThunderbolt } from "react-icons/ai";
 import { LiaAngleLeftSolid } from "react-icons/lia";
+import { TfiAngleDown } from "react-icons/tfi";
+import { FaHandsHoldingCircle } from "react-icons/fa6";
+
 
 
 export const Icons ={
+    foru:FaHandHoldingUsd,
+    angleDown:TfiAngleDown,
+    ajo:FaHandsHoldingCircle,
     close:GrClose,
     emergency:AiOutlineThunderbolt,
     menu:RiMenu3Fill,

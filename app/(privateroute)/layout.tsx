@@ -30,7 +30,7 @@ export default async function PrivateLayout({children}:{children:React.ReactNode
                 {children}
             </div>
         </div>
-        <AutoLogOut/>
+        {process.env.MODE === "PROD" &&  <AutoLogOut/>}
     </div>
   )
 }
