@@ -5,7 +5,7 @@ import { logInSchema,signUpSchema } from "@/utils/validations";
 import catchAsync,{redirectAsync} from "@/utils/server/catchAsync";
 import { mailSender } from "@/utils/server/sendMail";
 import prismaClient from "@/prisma/client";
-import { bcryptHash, generateOTP, getTimeFromNow } from "@/utils/server/util";
+import { bcryptHash, generateMerchantID, generateOTP, getTimeFromNow } from "@/utils/server/util";
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
@@ -31,6 +31,7 @@ export const A_SignUpUser =catchAsync(async (data:ISignUpForm)=>{
 
     //create new user
     const hashedPassword = await bcryptHash(data.password)
+    const merchantId = generateMerchantID()
     const newUser = await prismaClient.user.create({
         data:{
             email:data.email,
@@ -38,7 +39,8 @@ export const A_SignUpUser =catchAsync(async (data:ISignUpForm)=>{
             lastName:data.lastName,
             isVerified:false,
             isGoogleUser:false,
-            password:hashedPassword
+            password:hashedPassword,
+            merchantID:merchantId
         }      
     })
 
