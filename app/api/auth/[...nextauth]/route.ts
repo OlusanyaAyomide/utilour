@@ -8,7 +8,7 @@ import { cookies } from 'next/headers'
 import prismaClient from "@/prisma/client";
 import { bcryptCompare, generateOTP } from "@/utils/server/util";
 import { getTimeFromNow } from "@/utils/server/util";
-
+import { mailSender } from "@/utils/server/sendMail";
 export const authOptions:NextAuthOptions={
     session:{
         strategy:"jwt",
@@ -121,6 +121,7 @@ export const authOptions:NextAuthOptions={
                     }else{
                         //create new OTP object for users with inverified email
                         const otpCode = generateOTP()
+                        await mailSender({to:user.email,subject:"Utilor SignInOTp",body:otpCode,name:`${user.firstName} ${user.lastName}`})
                         const newOtpObject = await prismaClient.mailVerificationOTp.create({
                         data:{
                             userId:id,
