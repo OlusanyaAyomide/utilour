@@ -5,9 +5,9 @@ import { Icons } from '@/utils/Icons'
 
 export default function Back() {
     const router = useRouter()
-    
+    //left-20
     return (
-    <button className='mb-2 mt-4 z-10 max-lg:hidden left-20 py-1 relative rounded-xl transition-all duration-300 group pr-6 group hover:bg-accent px-2 flex-center ' onClick={()=>{router.back()}}>
+    <button className='mb-2 mt-4 z-10 mr-8 max-lg:hidden block ml-auto py-1 relative rounded-xl transition-all duration-300 flex group pr-6 group hover:bg-accent px-3 flex-center ' onClick={()=>{router.back()}}>
         <span className='mr-1'>
             <Icons.angleLeft className = "text-shade group-hover:text-main text-xl"/>
         </span>

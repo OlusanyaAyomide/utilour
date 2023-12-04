@@ -103,8 +103,69 @@ export const sideBarMenu=[
         url:"/logout",
         icon:Icons.signout,  
     },
+   
+]
 
-    
+export const chartoptions = {
+    maintainAspectRatio: false,
+    fill:'origin',
+    responsive: true,
+    plugins: {
+      filler: {
+        propagate: true
+    },
+      legend: {
+        position: 'top' as const,
+      },
+      title: {
+        display: true,
+        text: 'Last 7 days review',
+      },
+    },
+    scales: {
+    x: {
+        grid: {
+          display: false
+        }
+      },
+    y: {
+        // title:{
+        //     display:true,
+        //     text:"Amount Spent (₦)"
+        // },
+        min: 0
+      }
+    }
+}
 
 
+
+export const mockPortfolios=[
+    {
+        name:"Utilor UI Demo",
+        depositedAt:"" ,
+        maturedAt:"",
+        firstWithdrawal:"",
+        invested:"20,000",
+        accumulated:"22,000",
+        type:"for u"
+    },
+        {
+        name:"Utilor UI Demo",
+        depositedAt:"" ,
+        maturedAt:"",
+        firstWithdrawal:"",
+        invested:"20,000",
+        accumulated:"22,000",
+        type:"for u"
+    },
+    {
+        name:"Utilor UI Demo",
+        depositedAt:"" ,
+        maturedAt:"",
+        firstWithdrawal:"",
+        invested:"20,000",
+        accumulated:"22,000",
+        type:"for u"
+    }
 ]

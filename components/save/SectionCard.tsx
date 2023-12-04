@@ -10,14 +10,22 @@ interface ISectionCard{
     title:string
     children?:React.ReactNode
     disabled?:boolean
+    percentage?:string
 }
-export default function SectionCard({className,showGradient=false,Icon,content,title,children,disabled=false}:ISectionCard) {
+export default function SectionCard({className,showGradient=false,Icon,content,title,children,disabled=false,percentage}:ISectionCard) {
 
     const CardContent = ()=>(
         <div className={cn(`rounded-xl cursor-pointer full-shadow pt-4 pb-8 pad ${showGradient?"relative before:absolute before:inset-14 before:z-20 before before:bg-support before: before:blur-2xl before:opacity-60 bg-gradient-to-b from-white to-white/90":"bg-white"}  `,className)}>
                 <div className='relative z-30'>
-                    <div className="mb-[2px] rounded-xl grid place-items-center h-14 w-14 bg-main">
-                    <span><Icon className ="text-4xl text-white"/></span>
+                    <div className="flex-center">
+                        <div className="mb-[2px] shrink-0 rounded-xl grid place-items-center h-14 w-14 bg-main">
+                        <span><Icon className ="text-4xl text-white"/></span>
+                    </div>
+                    {percentage && <h1 className='grow pl-5 flex-center text-support'>
+                            <span className=''>{percentage}</span>
+                            <Icons.arrrowUp className = "text-[13px] ml-1 text-support"/>
+                    </h1>}
+
                 </div>
                 <h1 className="text-base font-semibold mb-3">{title}</h1>
                 <h1 className="text-shade mt-1">{content}</h1>
