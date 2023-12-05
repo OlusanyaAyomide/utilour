@@ -6,9 +6,6 @@ import React from 'react'
 import { ISessionInterface } from '@/interfaces/interface'
 import { redirect } from 'next/navigation'
 
-
-import { getServerSession } from 'next-auth'
-import { authOptions } from '../api/auth/[...nextauth]/route'
 import { getSession } from '@/utils/server/util'
 
 export default async function PrivateLayout({children}:{children:React.ReactNode}) {

@@ -1,7 +1,7 @@
 import VerifyMail from '@/components/landing/auth/VerifyMail'
 import React from 'react'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { authOptions } from '@/utils/server/authOptions'
 import { ISessionInterface } from '@/interfaces/interface'
 import { redirect } from 'next/navigation'
 
