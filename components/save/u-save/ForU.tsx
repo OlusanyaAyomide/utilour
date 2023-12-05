@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import DayPicker from '@/components/utils/DayPicker'
 import DurationPicker from '@/components/utils/DurationPicker'
 import { Button } from '@/components/ui/button'
+import PaymentTrigger from '@/components/utils/PaymentTrigger'
 
 interface IAmountInput extends  React.InputHTMLAttributes<HTMLInputElement>{
     isNaira?:boolean
@@ -54,10 +55,10 @@ export default function ForU() {
             <AmountInput onAmountChange={(value:string)=>{
                 const isNumber = validateNumber(value)
                 if(isNumber){
-                    const total = Number(isNumber)  
+                    const total = Math.round(Number(isNumber))  
                     if(total >= 0){
-                        setTotal(total)
-                        setMonthly(total/duration)
+                        setTotal(Math.round(total))
+                        setMonthly(Math.round(total/duration))
                     }
                 }
             }}
@@ -67,10 +68,10 @@ export default function ForU() {
             <AmountInput onAmountChange={(value:string)=>{
                 const isNumber = validateNumber(value)
                 if(isNumber){
-                    const monthly = Number(isNumber)
+                    const monthly = Math.round(Number(isNumber))
                     if(monthly>=0){
-                        setMonthly(monthly)   
-                        setTotal(monthly * duration)
+                        setMonthly(Math.round(monthly))   
+                        setTotal(Math.round(monthly * duration))
                     }  
                 }
             }}
@@ -83,13 +84,16 @@ export default function ForU() {
             <h1 className='font-medium mb-1'>How many monhts are you saving</h1>
             <DurationPicker duration={duration} setChange={(value)=>{
                 setDuration(value)
-                setMonthly(total/value)
+                setMonthly(Math.round(total/value))
             }
             }/>
             
         </>
         }
-        <Button className='text-white bg-support flex w-full mt-8' size={"lg"}>Submit Request</Button>
+        <PaymentTrigger title={`Complete savings : ₦${total.toLocaleString()}`}>
+            <Button className='text-white bg-support flex w-full mt-8' size={"lg"}>Submit Request</Button>
+        </PaymentTrigger>
+  
     </div>
   )
 }
