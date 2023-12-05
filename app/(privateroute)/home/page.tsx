@@ -1,4 +1,3 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import Activities from '@/components/home/Activities'
 import HeroSection from '@/components/home/HeroSection'
 import DotScroller from '@/components/utils/DotScroller'
