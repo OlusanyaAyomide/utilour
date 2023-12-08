@@ -9,7 +9,7 @@ import ForU from './ForU'
 export default function USaveHero() {
   return (
     <div className='pb-10'>
-        <div className='flex-center  pl-3 lg:pl-8 lg:mt-1 mb-4 text-shade max-lg:text-center text-xl xs:text-2xl lg:text-3xl font-semibold'>
+        <div className='page-info'>
             <span>U Save - Saving In Naira</span>
         </div>
         <BalanceCard amount='₦ 100,000.00' description='Available Balance on U Save' imageCode='NG'/>

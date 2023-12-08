@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import DotScroller from '../utils/DotScroller'
 import HeroCard from './HeroCard'
@@ -27,7 +28,7 @@ export default function HeroSection() {
                 <AccessCard
                     className='bg-[#fff34460]'
                     Icon={Icons.bank}
-                    text='U wallet'
+                    text='Save'
                     ngClass='text-[#fff344]'
                     url='/home'
                 />

@@ -6,8 +6,9 @@ interface IDotScroller{
     children:React.ReactNode,
     className?:string
     style?:string
+    ngClass?:string
 }
-export default function DotScroller({children,className,style}:IDotScroller) {
+export default function DotScroller({children,className,style,ngClass}:IDotScroller) {
     const [divWidth,setDivWidth] = useState<number>(0)
     const [innerwidth,setInnerWidth] = useState<number>(0)
     const divref = useRef<HTMLDivElement>(null)
@@ -76,7 +77,7 @@ export default function DotScroller({children,className,style}:IDotScroller) {
                 return (<button onClick={()=>{
                     scrollToPixel(divWidth*(item-1));
                     setShowDot(item)}}
-                className={`mr-3 rounded-full border ${showDot === item?"bg-main":""} mt-3 h-[10px] border border-main w-[10px]`} key={key}></button>)
+                className={cn(`mr-3 rounded-full border ${showDot === item?"bg-main":""} mt-3 h-[10px] border border-main w-[10px]`,ngClass)} key={key}></button>)
             })}
         </div>
     </>

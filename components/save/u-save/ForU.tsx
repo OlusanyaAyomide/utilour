@@ -1,5 +1,5 @@
 'use client'
-import React, { VoidFunctionComponent, useState } from 'react'
+import React, { useState } from 'react'
 import useMounted from '@/hooks/useMounted' 
 import { Input } from '@/components/ui/input'
 import CurencyFlag from '@/components/utils/CurencyFlag'
@@ -8,6 +8,7 @@ import DayPicker from '@/components/utils/DayPicker'
 import DurationPicker from '@/components/utils/DurationPicker'
 import { Button } from '@/components/ui/button'
 import PaymentTrigger from '@/components/utils/PaymentTrigger'
+
 
 interface IAmountInput extends  React.InputHTMLAttributes<HTMLInputElement>{
     isNaira?:boolean

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Dialog,DialogTrigger,DialogClose, DialogContent } from '../ui/dialog'
 import { Icons } from '@/utils/Icons'
 import { Button } from '../ui/button'
+import CloseButton from './CloseButton'
 
 
 interface IPaymentTrigger{
@@ -22,9 +23,7 @@ export default function PaymentTrigger({children,title}:IPaymentTrigger) {
                 <span className='font-medium text-[15px]'>{title}</span>
                 <DialogClose>
                     <div>
-                        <button className='h-9 w-9 group hover:border-border  grid place-content-center rounded-full'>
-                            <Icons.close className = "text-shade group-hover:text-main text-xl"/>
-                        </button>
+                         <CloseButton/>
                     </div>
                 </DialogClose>
             </div>

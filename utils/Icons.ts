@@ -1,29 +1,39 @@
 import {GrClose} from "react-icons/gr"
 import {RiMenu3Fill,RiCustomerService2Line} from "react-icons/ri"
-import {BsArrowRight} from "react-icons/bs"
-import {BiSolidLock} from "react-icons/bi"
-import {MdOutlineSubdirectoryArrowRight,MdOutlineDiamond} from "react-icons/md"
+import {BsArrowRight,BsCashCoin } from "react-icons/bs"
+import {BiSolidLock,BiTransferAlt } from "react-icons/bi"
+import {MdOutlineSubdirectoryArrowRight,MdOutlineDiamond,MdReport,MdFileDownload  } from "react-icons/md"
 import {AiFillEye,AiFillEyeInvisible,AiOutlineLogout,AiOutlineHome,AiOutlineGift, AiOutlineThunderbolt,AiOutlineAppstore,AiOutlineToTop} from "react-icons/ai"
 import {FcGoogle} from "react-icons/fc"
 import {RiSecurePaymentFill} from "react-icons/ri"
 import {PiHandCoinsBold,PiFlowerLotusLight,PiPaintBucket, PiFlowerLotus,PiWalletFill} from "react-icons/pi"
 import {LuSettings} from "react-icons/lu"
 import {FiMenu} from "react-icons/fi"
-import {IoMdNotificationsOutline } from "react-icons/io"
+import {IoMdNotificationsOutline, } from "react-icons/io"
 import {GoTriangleDown,GoGraph} from "react-icons/go"
 import {HiOutlineInformationCircle} from "react-icons/hi"
 import {BsBank2} from "react-icons/bs";
 import {FaMoneyCheck, FaHandHoldingUsd,FaDollarSign } from "react-icons/fa";
-import { CiVault } from "react-icons/ci";
+import { CiVault,CiFilter  } from "react-icons/ci";
 import { LiaAngleLeftSolid } from "react-icons/lia";
 import { TfiAngleDown } from "react-icons/tfi";
 import { FaHandsHoldingCircle,FaNairaSign,FaArrowUpLong  } from "react-icons/fa6";
-import {IoCardOutline} from "react-icons/io5"
+import {IoCardOutline,IoCopySharp } from "react-icons/io5"
+import { SlWallet } from "react-icons/sl";
+
+
+
 
 export const Icons ={
     arrrowUp:FaArrowUpLong ,
+    download:MdFileDownload ,
+    report:MdReport ,
+    filter:CiFilter,
+    copy:IoCopySharp ,
+    transfer:BiTransferAlt,
+    withdraw:BsCashCoin ,
     debitCard:IoCardOutline,
-    
+    wallet:SlWallet,
     foru:FaHandHoldingUsd,
     naira:FaNairaSign,
     dollar:FaDollarSign,

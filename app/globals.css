@@ -10,7 +10,7 @@
     --page:#f0f9fc;
     /* --main:#00032B; */
     --main: #00032B;
-    --test:#40f70846;
+    --test:#87f7089c;
     --shade:#4a5568;
     --main-hover:#02074b;
     --inputgray:#F0F1F1;
@@ -138,4 +138,7 @@
   .default-scroll::-webkit-scrollbar-thumb {
       @apply bg-border rounded-lg opacity-50
     }
+  .page-info{
+    @apply flex-center pl-3 lg:pl-8 lg:mt-1 mb-4 text-shade max-lg:text-center text-xl xs:text-2xl lg:text-3xl font-semibold
+  }
 }

@@ -169,3 +169,70 @@ export const mockPortfolios=[
         type:"for u"
     }
 ]
+
+
+export const mockTransactions=[
+    {
+        date:"21/10/2023",
+        category:"Transfer",
+        Amount:"₦2,000",
+        transactionRef:"#z1gsnks86e6kfo8",
+        status:"Success",
+        currency:"NGN",
+        channel:"Card",
+    },
+    {
+        date:"21/11/2023",
+        category:"withdrawal",
+        Amount:"₦4000",
+        transactionRef:"#z1gsnks86e6kfo8",
+        status:"Failed",
+        currency:"NGN",
+        channel:"TUssd",
+    },
+    {
+        date:"18/10/2023",
+        category:"Deposit",
+        Amount:"₦2,000",
+        transactionRef:"#z1gsnks86e6kfo8",
+        status:"Success",
+        currency:"NGN",
+        channel:"Card",
+    },
+    {
+        date:"21/10/2023",
+        category:"Interest",
+        Amount:"₦2,000",
+        transactionRef:"#z1gsnks86e6kfo8",
+        status:"Success",
+        currency:"NGN",
+        channel:"Card",
+    },
+    {
+        date:"21/10/2023",
+        category:"Deposit",
+        Amount:"₦2,000",
+        transactionRef:"#z1gsnks86e6kfo8",
+        status:"Failed",
+        currency:"NGN",
+        channel:"Card",
+    },
+    {
+        date:"21/10/2023",
+        category:"Transfer",
+        Amount:"₦2,000",
+        transactionRef:"#z1gsnks86e6kfo8",
+        status:"Success",
+        currency:"NGN",
+        channel:"Card",
+    },
+    {
+        date:"21/10/2023",
+        category:"transfer",
+        Amount:"₦2,000",
+        transactionRef:"#z1gsnks86e6kfo8",
+        status:"Success",
+        currency:"NGN",
+        channel:"Card",
+    },
+]

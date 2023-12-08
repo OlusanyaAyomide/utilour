@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default function SaveHero() {
   return (
     <div className=''>
-        <div className='flex-center pl-3 lg:pl-8 lg:mt-1 mb-4 text-shade max-lg:text-center text-xl xs:text-2xl lg:text-3xl font-semibold'>
+        <div className='page-info'>
             <span>Save In Naira</span>
         </div>
         <BalanceCard amount='₦ 200,000.00' description='Total Available Balance'/>
