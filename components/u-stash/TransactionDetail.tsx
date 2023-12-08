@@ -32,7 +32,7 @@ export default function TransactionDetail(item:typeof mockTransactions[0]) {
             <Info title='Category' content={item.category}/>
             <Info title='Channel' content={item.channel}/>
             <Info title='Status' content={item.status}/>
-            <div className='border-b shadow-inner py-2 mb-3 flex-center justify-between'>
+            <div className='border-b  py-2 mb-3 flex-center justify-between'>
                 <div>
                     <h1 className="text-xs text-shade">Refrence</h1>
                     <h1 className="font-semibold">{item.transactionRef}</h1>
