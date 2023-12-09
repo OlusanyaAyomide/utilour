@@ -73,7 +73,6 @@ export const A_SignUpUser =catchAsync(async (data:ISignUpForm)=>{
 
 
 
-
 export const A_SignInUser = catchAsync(async (data:ILogInForm)=>{
        console.log(data)
        const validatedData = await logInSchema.validate(data)

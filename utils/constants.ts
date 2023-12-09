@@ -236,3 +236,5 @@ export const mockTransactions=[
         channel:"Card",
     },
 ]
+
+export const oauthKey = '1087679368069-5ejfdtqodnd57e9d9se4vv36riqbaka2.apps.googleusercontent.com'

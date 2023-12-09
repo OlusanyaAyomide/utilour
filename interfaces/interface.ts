@@ -16,7 +16,7 @@ export interface ISignUpForm extends ILogInForm{
 export interface ISignIn{
     isGoogle?:boolean
     googleToken?:string
-    type : "google" |"signIn" | "email"
+    type : "google" |"signIn" | "email" | "googlesignIn"
     email?:string
     password?:string
     otp?:string
@@ -30,4 +30,12 @@ export interface ISessionInterface{
     lastName:string
     isVerified:boolean
     merchantID:string
+}
+
+export interface IgoogleResponse {
+    family_name: string
+    given_name: string
+    picture:string
+    email:string,
+    id: string
 }

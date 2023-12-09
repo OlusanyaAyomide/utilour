@@ -14,6 +14,8 @@ import { signIn } from 'next-auth/react'
 import { useCustomToast } from '@/components/utils/useCustomToast'
 import RingSpinner from '@/components/utils/spinners/RingSpinner'
 import { useEmailVerification } from '@/store/useEmailverifcation'
+import { useGoogleLogin } from '@react-oauth/google'
+
 
 export default function SignIn() {
 
@@ -26,7 +28,8 @@ export default function SignIn() {
     const router = useRouter()
     const toaster = useCustomToast()
     const {setStatus} = useEmailVerification()
-
+    
+    //sign up with email and password
     const onSubmit:SubmitHandler<ILogInForm>= async (data)=>{
         startTransition(async ()=>{
           const {error,ok} = await signIn("credentials",{redirect:false,type:"signIn",password:data.password,email:data.email}) as unknown as {status:number,ok:boolean,error:string | null}
@@ -41,10 +44,25 @@ export default function SignIn() {
           }
 
         })
-      // const result = await mutateData<{message:string}>(data)
-      // console.log(result)
     }
-    console.log(pending)
+
+    const login = useGoogleLogin({
+    //send user token to the server for signIn authentication
+    onSuccess: (res) =>{
+        startTransition(async ()=>{
+            const {error,ok} = await signIn("credentials",{redirect:false,type:"googlesignIn",googleToken:res.access_token}) as unknown as {status:number,ok:boolean,error:string | null}
+            if(!ok && error){
+                toaster("bad",error)
+            }
+            else{
+              toaster("good",`Welcome Back`)
+              router.push("/home")
+            }
+        })
+    } ,
+    onError: (error) => console.log('Login Failed:', error)
+    });
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="full-shadow mb-10 bg-white px-2 py-8 min-h-[200px] sm:px-3 rounded-xl" >
         <h1 className="font-bold text-main mb-6 text-center text-xl">Welcome Back</h1>
@@ -73,6 +91,11 @@ export default function SignIn() {
 
         <Button disabled={pending}  className='h-12 w-full mt-8 flex items-center text-white bg-main'>
             {!pending?"Sign In":<RingSpinner/>}
+        </Button>
+
+          <Button type='button' onClick={()=>{login()}} disabled={pending} variant={"outline"} className='h-12 text-foreground flex bg-gray-100 hover:bg-gray-200 w-full  items-center mt-4'>
+           <Icons.google className = "text-2xl"/>
+           <span className='ml-2'>Sign Up With Google </span>
         </Button>
         <Link href={"/user/signup"}>
             <h1 className="mt-2 mb-6 text-main hover:underline text-xs text-center">

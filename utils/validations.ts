@@ -24,7 +24,7 @@ export const logInSchema:yup.ObjectSchema<ILogInForm> = yup.object({
 
 export const SignInSchema:yup.ObjectSchema<any>=yup.object({
     email:yup.string().optional(),
-    type:yup.string().required().oneOf(["google","signIn","email"]),
+    type:yup.string().required().oneOf(["google","signIn","email","googlesignIn"]),
     isGoogle:yup.boolean().optional(),
     password:yup.string().optional(),
     otp:yup.string().optional(),

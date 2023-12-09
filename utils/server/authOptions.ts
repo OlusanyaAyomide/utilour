@@ -1,13 +1,14 @@
 import  CredentialsProvider  from "next-auth/providers/credentials";
 import { cookies } from 'next/headers'
 import prismaClient from "@/prisma/client";
-import { bcryptCompare, generateOTP } from "@/utils/server/util";
+import { bcryptCompare, generateOTP ,bcryptHash,generateMerchantID} from "@/utils/server/util";
 import { getTimeFromNow } from "@/utils/server/util";
 import { mailSender } from "@/utils/server/sendMail";
 import { ISignIn } from "@/interfaces/interface";
 import { validateData } from "@/utils/server/withValidation";
 import { SignInSchema, signUpSchema } from "@/utils/validations";
 import { NextAuthOptions } from "next-auth";
+import { getUserCredentials } from "./googleRequest";
 
 export const authOptions:NextAuthOptions={
     session:{
@@ -107,6 +108,9 @@ export const authOptions:NextAuthOptions={
                     if(!user){
                         throw Error("Invalid signIn details")
                     }
+                    if(user.isGoogleUser){
+                        throw Error("Sign In with google")
+                    }
                     const isPasswordValid = await bcryptCompare({hashedPassword:user.password,password:data.password})
                     if(!isPasswordValid){
                         throw Error("Invalid signIn details .")
@@ -119,7 +123,7 @@ export const authOptions:NextAuthOptions={
                             cookies().delete('verify-token')
                         }
                     }else{
-                        //create new OTP object for users with inverified email
+                        //create new OTP object for users with unverified email
                         const otpCode = generateOTP()
                         await mailSender({to:user.email,subject:"Utilor SignInOTp",body:otpCode,name:`${user.firstName} ${user.lastName}`})
                         const newOtpObject = await prismaClient.mailVerificationOTp.create({
@@ -140,7 +144,72 @@ export const authOptions:NextAuthOptions={
                         id,firstName,lastName,isVerified,email,merchantID
                     }  
                 }
-            throw Error ("Not processed")
+
+            //signUp from  new google users 
+            if(data.type === "google" && data.googleToken){
+                const userData = await getUserCredentials({token:data.googleToken})
+                if(!userData){
+                    throw Error("Token is invalid")
+                }
+                //check if email already  exists
+                const isExisting = await prismaClient.user.findUnique({
+                    where:{
+                        email:userData.email
+                    }
+                })
+                if (isExisting){
+                    throw Error("Email already exits")
+                }
+                console.log(userData)
+                //create new user
+                    const hashedPassword = await bcryptHash(`${userData.id}${process.env.JWT_SECRET}`)
+                    const merchantdID = `#${generateMerchantID()}`
+                    const newUser = await prismaClient.user.create({
+                        data:{
+                            email:userData.email,
+                            firstName:userData.given_name ||  "Not set",
+                            lastName:userData.family_name || "Not Set",
+                            isVerified:true,
+                            isGoogleUser:true,
+                            merchantID:merchantdID,
+                            password:hashedPassword
+                        }      
+                    })
+                    const {id,firstName,lastName,isVerified,email,merchantID} = newUser
+                    
+                    return{
+                        id,firstName,lastName,isVerified,email,merchantID
+                    }  
+
+            }
+
+            //googleSignIn
+            if(data.type === "googlesignIn" && data.googleToken){
+                const userData = await getUserCredentials({token:data.googleToken})
+                if(!userData){
+                    throw Error("Token is invalid")
+                }
+                //check if email exists in the database
+                const user = await prismaClient.user.findUnique({
+                    where:{
+                        email:userData.email
+                    }
+                })
+                if(!user){
+                    throw Error("Email not found")
+                }
+                if(!user.isGoogleUser){
+                    throw Error("Sign in with your password")
+                }
+                const {id,firstName,lastName,isVerified,email,merchantID} = user
+
+                return {
+                    id,firstName,lastName,isVerified,email,merchantID
+                }  
+
+            }
+
+            throw Error ("Unable to process request")
             }
         })
     ],

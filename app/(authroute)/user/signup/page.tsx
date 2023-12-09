@@ -1,6 +1,6 @@
 'use client'
 import InputField from '@/components/landing/auth/InputField'
-import React, { useState, useTransition } from 'react'
+import React, {  useState, useTransition } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { signUpSchema } from '@/utils/validations'
@@ -13,10 +13,15 @@ import { useMutateData } from '@/hooks/useMutateData'
 import { useRouter } from 'next/navigation'
 import RingSpinner from '@/components/utils/spinners/RingSpinner'
 import { useEmailVerification } from '@/store/useEmailverifcation'
+import { useGoogleLogin } from '@react-oauth/google'
+import { signIn } from 'next-auth/react'
+import { useCustomToast } from '@/components/utils/useCustomToast'
 
 export default function SignUp() {
     const router = useRouter()
     const {setStatus} = useEmailVerification()
+    const [pending,startTransition] = useTransition()
+    const toaster = useCustomToast()
 
   const {register,handleSubmit,watch,formState:{errors},setValue} = useForm<ISignUpForm>({
     resolver:yupResolver(signUpSchema),defaultValues:{isAgreed:false}
@@ -30,7 +35,23 @@ export default function SignUp() {
         router.push("/user/verify")
     }})
 
-  
+    //custom user google login to get user token
+    const login = useGoogleLogin({
+        //send user token to the server for authentication
+        onSuccess: (res) =>{
+            startTransition(async ()=>{
+                const {error,ok} = await signIn("credentials",{redirect:false,type:"google",googleToken:res.access_token}) as unknown as {status:number,ok:boolean,error:string | null}
+                if(!ok && error){
+                    toaster("bad",error)
+                }
+                else{
+                  toaster("good",`Welcome Aboard`)
+                  router.push("/home")
+                }
+            })
+        } ,
+        onError: (error) => console.log('Login Failed:', error)
+    });
 
     const onSubmit:SubmitHandler<ISignUpForm>= async (data)=>{
         mutate(data)
@@ -109,11 +130,11 @@ export default function SignUp() {
             <span className='absolute -bottom-2 text-[12px] text-red-500 left-2'>{errors.isAgreed?.message}</span>
         </div>
 
-        <Button disabled={isPending} className='h-12 w-full flex items-center text-white  mt-8'>
-            {!isPending?"Create Account":<RingSpinner/>}
+        <Button disabled={isPending || pending} className='h-12 w-full flex items-center text-white  mt-8'>
+            {!(isPending || pending)?"Create Account":<RingSpinner/>}
         </Button>
 
-        <Button disabled={isPending} variant={"outline"} className='h-12 text-foreground flex bg-gray-100 hover:bg-gray-200 w-full  items-center mt-4'>
+        <Button type='button' onClick={()=>{login()}} disabled={isPending || pending} variant={"outline"} className='h-12 text-foreground flex bg-gray-100 hover:bg-gray-200 w-full  items-center mt-4'>
            <Icons.google className = "text-2xl"/>
            <span className='ml-2'>Sign Up With Google </span>
         </Button>
