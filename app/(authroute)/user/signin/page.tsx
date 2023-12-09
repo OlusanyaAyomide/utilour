@@ -95,7 +95,7 @@ export default function SignIn() {
 
           <Button type='button' onClick={()=>{login()}} disabled={pending} variant={"outline"} className='h-12 text-foreground flex bg-gray-100 hover:bg-gray-200 w-full  items-center mt-4'>
            <Icons.google className = "text-2xl"/>
-           <span className='ml-2'>Sign Up With Google </span>
+           <span className='ml-2'>Sign In With Google </span>
         </Button>
         <Link href={"/user/signup"}>
             <h1 className="mt-2 mb-6 text-main hover:underline text-xs text-center">
