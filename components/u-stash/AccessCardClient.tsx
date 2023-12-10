@@ -7,7 +7,7 @@ import DotScroller from '../utils/DotScroller'
 export default function AccessCardClient() {
   return (
     <DotScroller ngClass='md:hidden'>
-        <div className="sm:ml-5 md:ml-3 mt-3 max-md:flex  max-md:justify-between max-md:px-4">
+        <div className="sm:ml-5 md:ml-3 mt-3 md:mt-12 max-md:flex  max-md:justify-between max-md:px-4">
             <AccessCard 
                 Icon={Icons.wallet}
                 className='bg-[#aa1dfc50] md:mb-6'

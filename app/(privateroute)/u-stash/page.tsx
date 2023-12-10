@@ -1,6 +1,7 @@
 import AccessCard from '@/components/home/AccessCard'
 import AccessCardClient from '@/components/u-stash/AccessCardClient'
 import TransactionList from '@/components/u-stash/TransactionList'
+import UserBalance from '@/components/u-stash/UserBalance'
 import WalletInfo from '@/components/u-stash/WalletInfo'
 import BalanceCard from '@/components/utils/BalanceCard'
 import { Icons } from '@/utils/Icons'
@@ -14,10 +15,8 @@ export default async function UStash() {
         <div className="page-info">
           <span>U Stash Wallet</span>
         </div>
-        <div className='flex max-md:flex-col'>
-            <BalanceCard amount='80,000' imageCode='NG' description='Total amount in wallet' className='md:w-full md:max-w-[550px] md:min-w-[480px] max-sm:py-1'>
-                <WalletInfo uId={user.merchantID} accountName={`${user.firstName} ${user.lastName}`}/>
-            </BalanceCard>
+        <div className='md:flex'>
+            <UserBalance dollarAmount='3,000 USD' accountName={`${user.firstName} ${user.lastName}`} nairaAmount='80,000 NGN' uId={user.merchantID}/>
             <AccessCardClient/>
         </div>
         <TransactionList/>
