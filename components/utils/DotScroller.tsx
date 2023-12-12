@@ -69,11 +69,6 @@ export default function DotScroller({children,className,style,ngClass}:IDotScrol
         </div>
         <div className={cn("flex-center mx-auto w-fit",style)}>
             {dotNumber > 1 && dotsArray.map((item,key)=>{
-                // const buttonPercent = 1/dotNumber
-                // const start = ((item-1) * buttonPercent) * 100
-                // const end = (item * buttonPercent) * 100
-                // console.log(start,end,scrollPercent,"--percent")
-                // const isInView = start <= scrollPercent && end >= scrollPercent
                 return (<button onClick={()=>{
                     scrollToPixel(divWidth*(item-1));
                     setShowDot(item)}}

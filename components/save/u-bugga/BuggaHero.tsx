@@ -2,6 +2,8 @@ import React from 'react'
 import BalanceCard from '../../utils/BalanceCard'
 import SectionCard from '../SectionCard'
 import { Icons } from '@/utils/Icons'
+import SaveProducts from '@/components/utils/SaveProducts'
+import Savings from '../u-save/Savings'
 
 export default function UBuggaHero() {
   return (
@@ -12,18 +14,22 @@ export default function UBuggaHero() {
         <BalanceCard amount='$ 10,000.00' description='Available Balance on U Save' imageCode='US'/>
         <div className="-mt-5 px-3 sm:px-10 lg:px-8 flex flex-wrap md:flex-row">
             <div className="w-full md:w-6/12 mb-6 md:pr-3">
-                <SectionCard title='For U'content='Create a new plan' Icon={Icons.vault} showGradient>
-
+                <SectionCard title='For U'content='Create a new plan' Icon={Icons.foru} showGradient>
+                    <SaveProducts header='For U' description='Create a new plan' Icon={Icons.foru}>
+                       <Savings type="ubugga" startAmount={4000}/>
+                    </SaveProducts>
                 </SectionCard>
             </div>
             <div className="w-full md:w-6/12 mb-6 md:pl-3">
-                <SectionCard title='U And I'content='Create a couple plan with your partner or best friend' Icon={Icons.flower} showGradient>
-
+                <SectionCard title='U And I'content='Create a couple plan with your partner or best friend' Icon={Icons.shake} showGradient>
+                    <SaveProducts header='U And I' description='Create a couple plan with your partner or best friend' Icon={Icons.shake}>
+                       <Savings type="ubugga" startAmount={4000} showPartner/>
+                    </SaveProducts>
                 </SectionCard>
             </div>
             <div className="w-full md:w-6/12 mb-6 md:pr-3">
                 <SectionCard title='Emergency Savings'content='Create a Plan for emergency' Icon={Icons.vault} showGradient>
-
+        
                 </SectionCard>
             </div>
             <div className="w-full md:w-6/12 md:pl-3">

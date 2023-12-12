@@ -7,6 +7,7 @@ import { ISessionInterface } from '@/interfaces/interface'
 import { redirect } from 'next/navigation'
 
 import { getSession } from '@/utils/server/util'
+import NetworkTracker from '@/components/layout/NetoworkTracker'
 
 export default async function PrivateLayout({children}:{children:React.ReactNode}) {
  
@@ -27,6 +28,7 @@ export default async function PrivateLayout({children}:{children:React.ReactNode
                 {children}
             </div>
         </div>
+        <NetworkTracker/>
         {process.env.MODE === "PROD" &&  <AutoLogOut/>}
     </div>
   )
