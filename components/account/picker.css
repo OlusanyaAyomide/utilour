@@ -1,0 +1,9 @@
+
+.ant-picker-input:focus{
+    @apply ring-0 border-0
+}
+.ant-picker:hover , .ant-picker-focused:focus-within{
+    @apply border-border
+}
+
+

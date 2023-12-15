@@ -18,14 +18,18 @@ import { CiVault,CiFilter  } from "react-icons/ci";
 import { LiaAngleLeftSolid } from "react-icons/lia";
 import { TfiAngleDown } from "react-icons/tfi";
 import { FaHandsHoldingCircle,FaNairaSign,FaArrowUpLong  } from "react-icons/fa6";
-import {IoCardOutline,IoCopySharp } from "react-icons/io5"
+import {IoCardOutline,IoCopySharp, IoCamera } from "react-icons/io5"
 import { SlWallet } from "react-icons/sl";
-import {PiHandshake } from "react-icons/pi"
+import {PiHandshake } from "react-icons/pi";
+import {CgProfile,CgLogOut  } from "react-icons/cg";
 
 
 
 export const Icons ={
     arrrowUp:FaArrowUpLong ,
+    logout:CgLogOut ,
+    profile:CgProfile,
+    camera:IoCamera ,
     shake:PiHandshake,
     download:MdFileDownload ,
     report:MdReport ,

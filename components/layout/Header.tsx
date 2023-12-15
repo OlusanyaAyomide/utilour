@@ -3,8 +3,10 @@ import React, { useState } from 'react'
 import Logo from '../utils/Logo'
 import { Sheet, SheetContent, SheetTrigger,SheetOverlay, SheetClose } from '../ui/sheet'
 import { Icons } from '@/utils/Icons'
-import { Avatar, AvatarFallback } from '../ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import SideLayout from './SideLayout'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
+import Link from 'next/link'
 
 export default function Header() {
     const [isOpen,setIsOpen] = useState<boolean>(false)
@@ -31,12 +33,32 @@ export default function Header() {
                 <Icons.notification className = "text-2xl text-shade"/>
             </button>
             <div className="flex-center mr-[2px] ml-2">
-                <Avatar>
-                    <AvatarFallback>UL</AvatarFallback>
-                </Avatar>
-                <button>
-                    <Icons.goTriangle className ="relative top-[2px] text-2xl text-shade"/>
-                </button>
+                <Popover>
+                    <PopoverTrigger asChild>
+                        <div className='flex-center'>
+                            <Avatar className='h-7 w-7'>
+                                <AvatarFallback>UL</AvatarFallback>
+                                <AvatarImage src="/avatar.png"/>
+                            </Avatar>
+                            <button>
+                                <Icons.goTriangle className ="relative top-[2px] text-2xl text-shade"/>
+                            </button>
+                        </div>
+                    </PopoverTrigger>
+                    <PopoverContent  className='relative max-w-[150px] right-10 py-2 px-0'>
+                        <Link href={"/account"}>
+                            <div className="mb-2 py-2 flex-center px-2 hover:bg-accent">
+                                <Icons.profile className = "text-shade text-3xl"/>
+                                <h1 className="ml-2 text-shade">Profile</h1>
+                            </div>
+                        </Link>
+
+                        <div className='py-2 flex-center px-2 hover:bg-accent'>
+                            <Icons.logout className = "text-shade text-3xl"/>
+                            <h1 className="ml-2 text-shade">Logout</h1>
+                        </div>
+                    </PopoverContent>
+                </Popover>
             </div>
         </div>
 
