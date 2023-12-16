@@ -10,6 +10,7 @@ import Link from 'next/link'
 
 export default function Header() {
     const [isOpen,setIsOpen] = useState<boolean>(false)
+    const [popUpOpen,setPopOpen] = useState<boolean>(false)
     return (
     <div className='w-full fixed  z-40 flex-center justify-between top-0 left-0 py-1 bg-page paddingx'>
         <div>
@@ -33,8 +34,8 @@ export default function Header() {
                 <Icons.notification className = "text-2xl text-shade"/>
             </button>
             <div className="flex-center mr-[2px] ml-2">
-                <Popover>
-                    <PopoverTrigger asChild>
+                <Popover open={popUpOpen}>
+                    <PopoverTrigger asChild onClick={()=>{(setPopOpen(true))}}>
                         <div className='flex-center'>
                             <Avatar className='h-7 w-7'>
                                 <AvatarFallback>UL</AvatarFallback>
@@ -45,8 +46,8 @@ export default function Header() {
                             </button>
                         </div>
                     </PopoverTrigger>
-                    <PopoverContent  className='relative max-w-[150px] right-10 py-2 px-0'>
-                        <Link href={"/account"}>
+                    <PopoverContent onFocusOutside={()=>{setPopOpen(false)}} className='relative max-w-[150px] right-10 py-2 px-0'>
+                        <Link onClick={()=>{setPopOpen(false)}} href={"/account"}>
                             <div className="mb-2 py-2 flex-center px-2 hover:bg-accent">
                                 <Icons.profile className = "text-shade text-3xl"/>
                                 <h1 className="ml-2 text-shade">Profile</h1>

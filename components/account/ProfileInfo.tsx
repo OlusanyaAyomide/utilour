@@ -24,7 +24,7 @@ export default function ProfileInfo(user:ISessionInterface) {
             </h1>
         </div>
         <UserProfile {...user}/>
-        <IdenticationForm/>
+
     </div>
   )
 }

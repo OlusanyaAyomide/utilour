@@ -26,7 +26,8 @@ export default function IdenticationForm() {
         <InputField
             title='Confirm ID  Number'
         />
-        <Button className='px-6 text-white hover:bg-support hover:brightness-110 sm:px-8 w-fit mx-auto bg-support'>Save Changes
+        
+        <Button className='px-6 h-12 mt-10 mb-6 w-[280px] text-white hover:bg-support hover:brightness-110 sm:px-8  mx-auto bg-support'>Save Changes
         </Button>
     </div>
   )
