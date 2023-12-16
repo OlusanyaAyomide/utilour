@@ -48,7 +48,7 @@ export default function NumberInput({className,onSelectCountry,register,name,err
             </Select>
             <input pattern="[0-9]*" inputMode="numeric" {...rest} {...register(name)} type="text" className='h-10 px-1 outline-none border-none grow' />
         </div>
-        {error && <span className="text-red-500 absolute -bottom-2 left-2 text-[13px]">{error}</span>}
+        {error && <span className="text-red-500 absolute -bottom-4 left-2 text-[13px]">{error}</span>}
     </div>
   )
 }

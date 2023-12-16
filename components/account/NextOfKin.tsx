@@ -60,7 +60,7 @@ export default function NextOfKin() {
                     <SelectItem value="friend">Friend</SelectItem>
                 </SelectContent>
             </Select>
-            {errors.relationship && <span className="text-red-500 absolute -bottom-2 left-2 text-[13px]">{errors.relationship.message}</span>}
+            {errors.relationship && <span className="text-red-500 absolute -bottom-4 left-2 text-[13px]">{errors.relationship.message}</span>}
         </div>
 
         <InputField

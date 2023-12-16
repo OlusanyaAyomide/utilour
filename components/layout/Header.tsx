@@ -12,7 +12,7 @@ export default function Header() {
     const [isOpen,setIsOpen] = useState<boolean>(false)
     const [popUpOpen,setPopOpen] = useState<boolean>(false)
     return (
-    <div className='w-full fixed  z-40 flex-center justify-between top-0 left-0 py-1 bg-page paddingx'>
+    <div className='w-full fixed  z-40 flex-center justify-between top-0 left-0 py-2  bg-page paddingx'>
         <div>
             <Logo className='max-lg:hidden'/>
             <Sheet open={isOpen} onOpenChange={(val)=>{setIsOpen(val)}}>

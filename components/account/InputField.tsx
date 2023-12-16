@@ -21,7 +21,7 @@ export default function InputField({className,type="text",name="null",title,disa
         :
         <Input {...rest} type={type} disabled={disabled} placeholder={placeholder} className='focus-visible:border focus-visible:ring-0 h-12'/>
         }
-        {error && <span className="text-red-500 absolute -bottom-2 left-2 text-[13px]">{error}</span>}
+        {error && <span className="text-red-500 absolute -bottom-4 left-2 text-[13px]">{error}</span>}
     </div>
   )
 }

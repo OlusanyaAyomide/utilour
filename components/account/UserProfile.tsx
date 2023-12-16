@@ -63,15 +63,16 @@ export default function UserProfile({firstName,lastName,email}:ISessionInterface
                         <SelectItem value="none">Prefer Not to say</SelectItem>
                     </SelectContent>
                 </Select>
-                {errors.gender && <span className="text-red-500 absolute -bottom-2 left-2 text-[13px]">{errors.gender.message}</span>}
+                {errors.gender && <span className="text-red-500 absolute -bottom-4 left-2 text-[13px]">{errors.gender.message}</span>}
             </div>
             
-            <div className="mb-6 w-full">
+            <div className="mb-6 w-full relative">
                 <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">Date Of Birth</h1>
                 <DatePicker onSelect={(date)=>{
                     const selected = date.toDate()
                     setValue("dateOfBirth",selected)
                 }} className='h-12 focus-visible:border focus-visible:border-border w-full'/>
+                {errors.dateOfBirth && <span className="text-red-500 absolute -bottom-4 left-2 text-[13px]">{errors.dateOfBirth.message}</span>}
             </div>
 
             <div className="w-full md:w-6/12 md:pr-2 mb-6 relative">
@@ -89,7 +90,7 @@ export default function UserProfile({firstName,lastName,email}:ISessionInterface
                 {errors.countryCode && <span className="text-red-500 absolute -bottom-2 left-2 text-[13px]">{errors.countryCode.message}</span>}
             </div>
 
-            <NumberInput onSelectCountry={(code)=>{setValue("countryCode",code)}} register={register} name="phoneNumber"/>
+            <NumberInput error={errors.phoneNumber?.message} onSelectCountry={(code)=>{setValue("countryCode",code)}} register={register} name="phoneNumber"/>
 
             <Button className='px-6 h-12 mt-10 mb-6 w-[280px] text-white hover:bg-support hover:brightness-110 sm:px-8  mx-auto bg-support'>Save Changes
             </Button>
