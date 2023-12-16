@@ -12,16 +12,22 @@ import { useForm } from 'react-hook-form';
 
 export default function NextOfKin() {
  
-    const {register,handleSubmit,formState:{errors},setValue} = useForm<INextOfKin>({resolver:yupResolver(nextOfKinSchema)})
+    const {register,handleSubmit,formState:{errors},
+    setValue} = useForm<INextOfKin>({resolver:yupResolver(nextOfKinSchema),defaultValues:{countryCode:"+234"}})
+
+    const onSubmit =(value:INextOfKin)=>{
+        console.log(value)
+    }
 
     return (
-    <form action="" className='mt-5 flex flex-wrap'>
+    <form onSubmit={handleSubmit(onSubmit)}  action="" className='mt-5 flex flex-wrap'>
         <InputField
             title='First Name'
             name="firstName"
             error={errors.firstName?.message}
             register={register}
             className='w-full md:pr-2 md:w-6/12'
+            placeholder='Next of Kin firstName'
 
         />
         <InputField
@@ -29,6 +35,7 @@ export default function NextOfKin() {
             register={register}
             name='lastName'
             error={errors.lastName?.message}
+            placeholder='Next of Kin lastName'
             className='w-full md:pl-2 md:w-6/12'
         />
         <InputField
@@ -36,11 +43,12 @@ export default function NextOfKin() {
             name='email'
             register={register}
             error={errors.email?.message}
+            placeholder='Enter Email Address'
 
         />
-        <NumberInput onSelectCountry={(val)=>{setValue("phoneNumber",val)}} className = "md:w-full" register={register} name="phoneNumber"/>
+        <NumberInput error={errors.phoneNumber?.message} onSelectCountry={(val)=>{setValue("phoneNumber",val)}} className = "md:w-full" register={register} name="phoneNumber"/>
 
-        <div className='mb-6 w-full'>
+        <div className='mb-6 w-full relative'>
              <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">RelationShip</h1>
             <Select onValueChange={(val)=>{setValue("relationship",val)}}>
                 <SelectTrigger className='w-full h-12  focus-visible:border'>
@@ -52,11 +60,13 @@ export default function NextOfKin() {
                     <SelectItem value="friend">Friend</SelectItem>
                 </SelectContent>
             </Select>
+            {errors.relationship && <span className="text-red-500 absolute -bottom-2 left-2 text-[13px]">{errors.relationship.message}</span>}
         </div>
 
         <InputField
             title='Next of Kin Address'
             name='address'
+            placeholder='Enter Address'
             register={register}
             error={errors.address?.message}
         />

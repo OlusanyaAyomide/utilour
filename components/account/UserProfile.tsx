@@ -16,7 +16,7 @@ import { useForm } from 'react-hook-form';
 
 export default function UserProfile({firstName,lastName,email}:ISessionInterface) {
 
-    const {register,handleSubmit,formState:{errors},setValue} = useForm<ICompleteProfile>({resolver:yupResolver(profileSchema)})
+    const {register,handleSubmit,formState:{errors},setValue} = useForm<ICompleteProfile>({resolver:yupResolver(profileSchema),defaultValues:{countryCode:"+234"}})
 
     const onSubmit = (value:ICompleteProfile)=>{
         console.log(value)
@@ -51,7 +51,7 @@ export default function UserProfile({firstName,lastName,email}:ISessionInterface
                 placeholder={email}
             />
 
-            <div className='mb-6 w-full'>
+            <div className='mb-6  relative w-full'>
                  <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">Gender</h1>
                 <Select onValueChange={(val)=>{setValue("gender",val)}}>
                     <SelectTrigger className='w-full h-12  focus-visible:border'>
@@ -63,6 +63,7 @@ export default function UserProfile({firstName,lastName,email}:ISessionInterface
                         <SelectItem value="none">Prefer Not to say</SelectItem>
                     </SelectContent>
                 </Select>
+                {errors.gender && <span className="text-red-500 absolute -bottom-2 left-2 text-[13px]">{errors.gender.message}</span>}
             </div>
             
             <div className="mb-6 w-full">
@@ -73,7 +74,7 @@ export default function UserProfile({firstName,lastName,email}:ISessionInterface
                 }} className='h-12 focus-visible:border focus-visible:border-border w-full'/>
             </div>
 
-            <div className="w-full md:w-6/12 md:pr-2 mb-6">
+            <div className="w-full md:w-6/12 md:pr-2 mb-6 relative">
                 <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">Country</h1>
                 <Select onValueChange={(val)=>{setValue("country",val)}}>
                     <SelectTrigger className='w-full h-12 focus-visible:border'>
@@ -85,6 +86,7 @@ export default function UserProfile({firstName,lastName,email}:ISessionInterface
                         ))}
                     </SelectContent>
                 </Select>
+                {errors.countryCode && <span className="text-red-500 absolute -bottom-2 left-2 text-[13px]">{errors.countryCode.message}</span>}
             </div>
 
             <NumberInput onSelectCountry={(code)=>{setValue("countryCode",code)}} register={register} name="phoneNumber"/>
