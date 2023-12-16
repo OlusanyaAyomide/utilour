@@ -1,5 +1,5 @@
 import * as yup from "yup"
-import { ILogInForm, ISignIn, ISignUpForm } from "@/interfaces/interface"
+import { ICompleteProfile, ILogInForm, INextOfKin, ISignIn, ISignUpForm } from "@/interfaces/interface"
 
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
 const passwordRegex =/^(?=.*[A-Z])(?=.*[a-zA-Z0-9!@#$%^&*]).{8,}$/
@@ -29,4 +29,27 @@ export const SignInSchema:yup.ObjectSchema<any>=yup.object({
     password:yup.string().optional(),
     otp:yup.string().optional(),
     googleToken:yup.string().optional()
+})
+
+
+export const profileSchema:yup.ObjectSchema<ICompleteProfile>= yup.object({
+    middleName:yup.string().required(),
+    gender:yup.string().required(),
+    country:yup.string().required(),
+    dateOfBirth:yup.date().required(),
+    phoneNumber: yup.string().matches(/^[0-9]*$/, 'Phone number must contain only digits').max(10).required(),
+    countryCode:yup.string().required()
+})
+
+
+
+
+export const nextOfKinSchema:yup.ObjectSchema<INextOfKin>=yup.object({
+    firstName:yup.string().required(),
+    lastName:yup.string().required(),
+    email:yup.string().required(),
+    relationship:yup.string().required(),
+    phoneNumber: yup.string().matches(/^[0-9]*$/, 'Phone number must contain only digits').max(10).required(),
+    countryCode:yup.string().required(),
+    address:yup.string().required(),
 })

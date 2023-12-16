@@ -39,3 +39,25 @@ export interface IgoogleResponse {
     email:string,
     id: string
 }
+
+
+export interface ICompleteProfile{
+    middleName:string
+    gender:string
+    country:string
+    dateOfBirth:Date
+    phoneNumber:string
+    countryCode:string
+}
+
+
+
+export interface INextOfKin{
+    firstName:string
+    lastName:string
+    email:string
+    relationship:string
+    address:string
+    countryCode:string
+    phoneNumber:string
+}

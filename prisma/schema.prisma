@@ -29,3 +29,5 @@ model MailVerificationOTp {
     expiredTime DateTime
     otpCode     String
 }
+
+
