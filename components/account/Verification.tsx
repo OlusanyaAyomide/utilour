@@ -8,7 +8,7 @@ import IdenticationForm from './IdenticationForm'
 export default function Verification() {
   return (
     <div>
-        <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">Bvn Verification</h1>
+        <h1 className="ml-[2px] my-10  font-medium text-shade mb-[2px] text-[22px] sm:text-2xl">Identification</h1>
         <InputField
             title='Bvn Number'
             placeholder='Enter Bvn'

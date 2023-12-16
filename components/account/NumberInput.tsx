@@ -4,13 +4,18 @@ import CurencyFlag from '../utils/CurencyFlag'
 import { countries } from '../utils/countries'
 import { SelectTrigger,SelectContent,Select,SelectItem } from '../ui/select'
 import { Defaultcountry ,ICountries} from '../utils/countries'
+import { cn } from '@/lib/utils'
+
+interface INumberInput{
+    className?:string
+}
 
 
-export default function NumberInput() {
+export default function NumberInput({className}:INumberInput) {
       const [country,setCountry] = useState<ICountries>(Defaultcountry)
       const [open,setIsOpen] = useState(false)
       return (
-    <div className="w-full md:w-6/12 md:pl-2 mb-6">
+    <div className={cn("w-full md:w-6/12 md:pl-2 mb-6",className)}>
         <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">Country</h1>
         <div className="flex-center h-12 px-2 border rounded-md">
             <CurencyFlag currency={country.countryCode} className=' mr-[2px]'/>
@@ -25,10 +30,9 @@ export default function NumberInput() {
                         {countries.map((item,key)=>{
                             return<div key={key}>
                                 <button onClick={()=>{
-                                    console.log(item)
                                     setCountry(item)
                                     // setIsOpen(false)
-                                }} className="text-shade py-2 bg-red-50 hover:bg-accent w-full">{item.countryName}</button>
+                                }} className="text-shade py-2 hover:bg-accent w-full">{item.countryName}</button>
                                 {/* <SelectItem value={item.callCode}>{item.countryName}</SelectItem> */}
                             </div>
                         })}

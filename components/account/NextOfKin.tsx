@@ -19,7 +19,7 @@ export default function NextOfKin() {
         <InputField
             title='Email Address'
         />
-        {/* <NumberInput/> */}
+        <NumberInput className = "md:w-full"/>
 
         <div className='mb-6 w-full'>
              <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">RelationShip</h1>
