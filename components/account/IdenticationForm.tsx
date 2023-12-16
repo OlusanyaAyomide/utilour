@@ -11,12 +11,12 @@ export default function IdenticationForm() {
             <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">Identification Type</h1>
             <Select>
                 <SelectTrigger className='w-full h-12  focus-visible:border'>
-                    <SelectValue placeholder = "Choose gender"/>
+                    <SelectValue placeholder = "Select Identification type"/>
                 </SelectTrigger>
                 <SelectContent className='w-full'>
-                    <SelectItem className='w-full' value="male">Male</SelectItem>
-                    <SelectItem value="female">Female</SelectItem>
-                    <SelectItem value="none">Prefer Not to say</SelectItem>
+                    <SelectItem className='w-full' value="passport">International Passport</SelectItem>
+                    <SelectItem value="NationalId">NationalID</SelectItem>
+                    <SelectItem value="Drivers License">Drivers Licence</SelectItem>
                 </SelectContent>
             </Select>
         </div>
