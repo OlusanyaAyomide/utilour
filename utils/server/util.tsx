@@ -3,6 +3,7 @@ import {getServerSession} from "next-auth"
 import { authOptions } from "./authOptions";
 import { redirect } from "next/navigation";
 import { ISessionInterface } from "@/interfaces/interface";
+import { NextResponse } from "next/server";
 
 
 export function generateOTP(): string {

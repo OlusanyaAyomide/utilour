@@ -37,16 +37,16 @@ export default function Header() {
                 <Popover open={popUpOpen}>
                     <PopoverTrigger asChild onClick={()=>{(setPopOpen(true))}}>
                         <div className='flex-center'>
-                            <Avatar className='h-7 w-7'>
+                            <Avatar className='h-7 w-7 cursor-pointer'>
                                 <AvatarFallback>UL</AvatarFallback>
                                 <AvatarImage src="/avatar.png"/>
                             </Avatar>
-                            <button>
+                            <button className='cursor-pointer'>
                                 <Icons.goTriangle className ="relative top-[2px] text-2xl text-shade"/>
                             </button>
                         </div>
                     </PopoverTrigger>
-                    <PopoverContent onFocusOutside={()=>{setPopOpen(false)}} className='relative max-w-[150px] right-10 py-2 px-0'>
+                    <PopoverContent  onBlur={()=>{setPopOpen(false)}} onFocusOutside={()=>{setPopOpen(false)}} className='relative max-w-[150px] right-10 py-2 px-0'>
                         <Link onClick={()=>{setPopOpen(false)}} href={"/account"}>
                             <div className="mb-2 py-2 flex-center px-2 hover:bg-accent">
                                 <Icons.profile className = "text-shade text-3xl"/>
