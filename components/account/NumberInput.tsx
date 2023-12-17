@@ -22,7 +22,7 @@ export default function NumberInput({className,onSelectCountry,register,name,err
       const [open,setIsOpen] = useState(false)
     return (
     <div className={cn("w-full relative  md:w-6/12 md:pl-2 mb-6",className)}>
-        <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">Country</h1>
+        <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">Phone Number</h1>
         <div className="flex-center h-12 px-2 border rounded-md">
             <CurencyFlag currency={country.countryCode} className=' mr-[2px]'/>
             <Select  open={open} value={country.callCode}>

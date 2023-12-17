@@ -1,5 +1,5 @@
 import * as yup from "yup"
-import { ICompleteProfile, ILogInForm, INextOfKin, ISignIn, ISignUpForm } from "@/interfaces/interface"
+import { IBvnn, ICompleteProfile, IIDentitiyForm, ILogInForm, INextOfKin, ISignIn, ISignUpForm } from "@/interfaces/interface"
 
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
 const passwordRegex =/^(?=.*[A-Z])(?=.*[a-zA-Z0-9!@#$%^&*]).{8,}$/
@@ -49,7 +49,19 @@ export const nextOfKinSchema:yup.ObjectSchema<INextOfKin>=yup.object({
     lastName:yup.string().required(),
     email:yup.string().required(),
     relationship:yup.string().required(),
-    phoneNumber: yup.string().matches(/^[0-9]*$/, 'Phone number must contain only digits').max(10).required(),
+    phoneNumber: yup.string().matches(/^[0-9]*$/, 'Phone number must contain only digits').length(10).required(),
     countryCode:yup.string().required(),
     address:yup.string().required(),
+})
+
+
+export const IdentificationSchema:yup.ObjectSchema<IIDentitiyForm>= yup.object({
+    identificationType:yup.string().required(),
+    identificationNumber:yup.string().required(),
+    confirmIdentityNumber:yup.string().required().oneOf([yup.ref("identificationNumber")],'Identificatioin Number mismatch'),
+})
+
+
+export const IBvnSchema:yup.ObjectSchema<IBvnn> = yup.object({
+    BvnNumber:yup.string().required().length(11,"Bvn is Invalid")
 })

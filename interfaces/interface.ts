@@ -61,3 +61,14 @@ export interface INextOfKin{
     countryCode:string
     phoneNumber:string
 }
+
+
+export interface IIDentitiyForm{
+    identificationType:string
+    identificationNumber:string
+    confirmIdentityNumber:string
+}
+
+export interface IBvnn{
+    BvnNumber:string
+}
