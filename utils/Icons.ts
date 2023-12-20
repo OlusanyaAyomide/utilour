@@ -13,9 +13,9 @@ import {IoMdNotificationsOutline, } from "react-icons/io"
 import {GoTriangleDown,GoGraph} from "react-icons/go"
 import {HiOutlineInformationCircle} from "react-icons/hi"
 import {BsBank2} from "react-icons/bs";
-import {FaMoneyCheck, FaHandHoldingUsd,FaDollarSign } from "react-icons/fa";
-import { CiVault,CiFilter  } from "react-icons/ci";
-import { LiaAngleLeftSolid } from "react-icons/lia";
+import {FaMoneyCheck, FaHandHoldingUsd,FaDollarSign,FaRegTrashAlt ,FaAngleUp  } from "react-icons/fa";
+import { CiVault,CiFilter   } from "react-icons/ci";
+import { LiaAngleLeftSolid,LiaAngleUpSolid } from "react-icons/lia";
 import { TfiAngleDown } from "react-icons/tfi";
 import { FaHandsHoldingCircle,FaNairaSign,FaArrowUpLong  } from "react-icons/fa6";
 import {IoCardOutline,IoCopySharp, IoCamera } from "react-icons/io5"
@@ -27,6 +27,9 @@ import {CgProfile,CgLogOut  } from "react-icons/cg";
 
 export const Icons ={
     arrrowUp:FaArrowUpLong ,
+    trash:FaRegTrashAlt ,
+    angleUp:LiaAngleUpSolid,
+    
     logout:CgLogOut ,
     profile:CgProfile,
     camera:IoCamera ,

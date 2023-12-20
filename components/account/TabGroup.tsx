@@ -11,7 +11,7 @@ interface ITabGroup{
 export default function TabGroup({account,nextOfKin,bank,verification}:ITabGroup) {
   return (
     <div className='px-2 sm:px-3'>
-        <div className='flex-center mb-2 text-shade max-lg:text-center text-xl xs:text-2xl lg:text-3xl font-semibold'>
+        <div className='flex-center mb-2 text-shade max-lg:text-center text-xl xs:text-2xl font-semibold'>
             <span>Set Up Account</span>
         </div>
         <Tabs defaultValue='account' className=''>

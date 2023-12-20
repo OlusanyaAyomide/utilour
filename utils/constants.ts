@@ -238,3 +238,28 @@ export const mockTransactions=[
 ]
 
 export const oauthKey = '1087679368069-5ejfdtqodnd57e9d9se4vv36riqbaka2.apps.googleusercontent.com'
+
+export const mockAccounts =[
+    {
+        default:true,
+        name:"Utilor Mock User ",
+        AccountNumber:"20012000212",
+        bankName:"United Bank Of Nigeria",
+        bankLogo:"https://nigerianbanks.xyz/logo/united-bank-for-africa.png"
+    },
+    {
+        default:false,
+        name:"Utilor Mock User",
+        AccountNumber:"20012000212",
+        bankName:"Stanbic IBTC bank",
+        bankLogo:"https://nigerianbanks.xyz/logo/stanbic-ibtc-bank.png"
+    },
+    {
+        default:false,
+        name:"Utilor Mock User",
+        AccountNumber:"20012000212",
+        bankName:"Kuda Bank",
+        bankLogo:"https://nigerianbanks.xyz/logo/kuda-bank.png"
+    },
+
+]

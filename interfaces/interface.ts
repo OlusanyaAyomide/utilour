@@ -61,3 +61,9 @@ export interface INextOfKin{
     countryCode:string
     phoneNumber:string
 }
+
+
+export interface INewBank{
+    bankName:string
+    AccountNumber:string
+}
