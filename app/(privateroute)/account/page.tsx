@@ -1,3 +1,4 @@
+import BankList from '@/components/account/BankList'
 import NextOfKin from '@/components/account/NextOfKin'
 import ProfileInfo from '@/components/account/ProfileInfo'
 import TabGroup from '@/components/account/TabGroup'
@@ -12,7 +13,7 @@ export default async function Account() {
         <TabGroup
             account={<ProfileInfo {...user}/>}
             verification={<Verification/>}
-            bank={<span>Bank</span>}
+            bank={<BankList/>}
             nextOfKin={<NextOfKin/>}
         />
     </div>

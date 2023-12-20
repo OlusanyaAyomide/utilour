@@ -72,3 +72,8 @@ export interface IIDentitiyForm{
 export interface IBvnn{
     BvnNumber:string
 }
+
+export interface INewBank{
+    bankName:string
+    AccountNumber:string
+}

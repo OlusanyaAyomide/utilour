@@ -11,6 +11,8 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { ICompleteProfile } from '@/interfaces/interface';
 import { profileSchema } from '@/utils/validations';
 import { useForm } from 'react-hook-form';
+import RingSpinner from '@/components/utils/spinners/RingSpinner'
+import { useMutateData } from '@/hooks/useMutateData';
 
 
 
@@ -18,8 +20,10 @@ export default function UserProfile({firstName,lastName,email}:ISessionInterface
 
     const {register,handleSubmit,formState:{errors},setValue} = useForm<ICompleteProfile>({resolver:yupResolver(profileSchema),defaultValues:{countryCode:"+234"}})
 
+    const {isPending,mutate} = useMutateData({url:"/api/user/profile",successText:"Profile Succesfully Updated"})
+
     const onSubmit = (value:ICompleteProfile)=>{
-        console.log(value)
+        mutate(value)
     }
     
     return (
@@ -92,7 +96,8 @@ export default function UserProfile({firstName,lastName,email}:ISessionInterface
 
             <NumberInput error={errors.phoneNumber?.message} onSelectCountry={(code)=>{setValue("countryCode",code)}} register={register} name="phoneNumber"/>
 
-            <Button className='px-6 h-12 mt-10 mb-6 w-[280px] text-white hover:bg-support hover:brightness-110 sm:px-8  mx-auto bg-support'>Save Changes
+            <Button disabled={isPending} className='px-6 h-12 mt-10 mb-6 w-[280px] text-white hover:bg-support hover:brightness-110 sm:px-8  mx-auto bg-support'>
+                {isPending?<RingSpinner/>:"Save Changes"}
             </Button>
         </form>
   )

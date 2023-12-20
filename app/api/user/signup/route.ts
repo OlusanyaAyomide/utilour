@@ -19,7 +19,6 @@ export async function POST(request:Request){
     catch(err){
         return NextResponse.json({error:"Invalid Body sent"},{status:400})
     }
-    console.log(body);
     
     const validatedData = await validateData(signUpSchema,body)
     if (validatedData){

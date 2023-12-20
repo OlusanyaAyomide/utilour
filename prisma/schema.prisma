@@ -18,6 +18,8 @@ model User {
     isGoogleUser        Boolean
     password            String
     merchantID          String
+    profile             Profile?              @relation(fields: [profileId], references: [id])
+    profileId           String?               @unique
     MailVerificationOTp MailVerificationOTp[]
 }
 
@@ -30,4 +32,21 @@ model MailVerificationOTp {
     otpCode     String
 }
 
-
+model Profile {
+    id            String   @id @unique() @default(uuid())
+    user          User? 
+    userId        Int      @unique
+    middleName    String
+    avatar        String?
+    dateOfBirth   DateTime
+    BvnNumber     String?
+    isBvnVerified Boolean  @default(false)
+    isKycverified Boolean  @default(false)
+    payStackCode  String
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+    gender        String
+    phoneNumber   String
+    country       String
+    countryCode   String
+}

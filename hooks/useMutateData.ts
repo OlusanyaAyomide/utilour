@@ -54,7 +54,9 @@ export function useMutateData<T>({showError=true,url,onError=()=>{},onSuccess=()
 
         },
         onError(res:AxiosError<any>){
-            console.log(res)
+            if(typeof res.message === "string"){
+                toaster("bad",res.message)
+            }
             onError(res.message)   
         }
     })
