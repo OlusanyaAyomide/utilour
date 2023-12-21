@@ -1,14 +1,14 @@
 'use client'
 import React,{useRef} from 'react'
 import { Avatar,AvatarFallback,AvatarImage } from '../ui/avatar'
-import { ISessionInterface } from '@/interfaces/interface'
+import { IProfileAccount, ISessionInterface } from '@/interfaces/interface'
 import InputField from './InputField'
 import { Icons } from '@/utils/Icons'
 
 import IdenticationForm from './IdenticationForm'
 import UserProfile from './UserProfile'
 
-export default function ProfileInfo(user:ISessionInterface) {
+export default function ProfileInfo(profile:IProfileAccount) {
     return (
     <div className='mt-6 md:mt-8'>
         <div className="flex max-sm:flex-col sm:items-center max-md:w-fit max-sm:mx-auto">
@@ -19,11 +19,11 @@ export default function ProfileInfo(user:ISessionInterface) {
                 <Icons.camera className = "text-2xl cursor-pointer md:text-3xl text-white absolute right-2 bottom-3"/>
             </Avatar>
             <h1 className="text-[22px] md:text-2xl flex-center font-semibold text-shade">
-                <span>{user.firstName}</span>
-                <span className="ml-1">{user.lastName}</span>
+                <span>{profile.firstName}</span>
+                <span className="ml-1">{profile.lastName}</span>
             </h1>
         </div>
-        <UserProfile {...user}/>
+        <UserProfile {...profile}/>
 
     </div>
   )

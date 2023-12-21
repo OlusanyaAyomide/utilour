@@ -104,7 +104,7 @@ export interface IProfileAccount{
     middleName?:string
     gender?:string
     country?:string
-    dateOfBirth?:Date
+    dateOfBirth?:string
     phoneNumber?:string
     countryCode?:string
     firstName:string

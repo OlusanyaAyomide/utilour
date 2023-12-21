@@ -34,8 +34,8 @@ model MailVerificationOTp {
 
 model Profile {
     id            String   @id @unique() @default(uuid())
-    user          User? 
-    userId        Int      @unique
+    user          User?
+    userId        String   @unique
     middleName    String
     avatar        String?
     dateOfBirth   DateTime

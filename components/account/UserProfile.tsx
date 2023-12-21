@@ -4,7 +4,7 @@ import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue} from "@/compo
 import { DatePicker, Space } from 'antd';
 import { Button } from '../ui/button'
 import InputField from './InputField';
-import { ISessionInterface } from '@/interfaces/interface';
+import { IProfileAccount, ISessionInterface } from '@/interfaces/interface';
 import { countries } from '../utils/countries';
 import NumberInput from './NumberInput';
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -13,18 +13,20 @@ import { profileSchema } from '@/utils/validations';
 import { useForm } from 'react-hook-form';
 import RingSpinner from '@/components/utils/spinners/RingSpinner'
 import { useMutateData } from '@/hooks/useMutateData';
+import dayjs from 'dayjs';
 
 
+export default function UserProfile({firstName,lastName,email,middleName,dateOfBirth,gender,country,countryCode,phoneNumber}:IProfileAccount) {
+    const date = new Date(dateOfBirth || "")
+    console.log(gender,country)
+    const {register,handleSubmit,formState:{errors},setValue} = useForm<ICompleteProfile>({resolver:yupResolver(profileSchema),defaultValues:{countryCode:countryCode || "+234" ,middleName,dateOfBirth:dateOfBirth?date:undefined,gender,country,phoneNumber}})
 
-export default function UserProfile({firstName,lastName,email}:ISessionInterface) {
-
-    const {register,handleSubmit,formState:{errors},setValue} = useForm<ICompleteProfile>({resolver:yupResolver(profileSchema),defaultValues:{countryCode:"+234"}})
-
-    const {isPending,mutate} = useMutateData({url:"/api/user/profile",successText:"Profile Succesfully Updated"})
+    const {isPending,mutate} = useMutateData({url:"/api/user/profile/create",successText:"Profile Succesfully Updated"})
 
     const onSubmit = (value:ICompleteProfile)=>{
         mutate(value)
     }
+    const dayjsObject  = dayjs(dateOfBirth)
     
     return (
         <form onSubmit={handleSubmit(onSubmit)}  className='mt-5 flex flex-wrap'>
@@ -59,7 +61,7 @@ export default function UserProfile({firstName,lastName,email}:ISessionInterface
                  <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">Gender</h1>
                 <Select onValueChange={(val)=>{setValue("gender",val)}}>
                     <SelectTrigger className='w-full h-12  focus-visible:border'>
-                        <SelectValue placeholder = "Choose gender"/>
+                        <SelectValue placeholder={`${gender || "Choose gender" }`} />
                     </SelectTrigger>
                     <SelectContent className='w-full'>
                         <SelectItem className='w-full' value="male">Male</SelectItem>
@@ -72,7 +74,7 @@ export default function UserProfile({firstName,lastName,email}:ISessionInterface
             
             <div className="mb-6 w-full relative">
                 <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">Date Of Birth</h1>
-                <DatePicker onSelect={(date)=>{
+                <DatePicker defaultValue={dateOfBirth?dayjsObject:undefined} onSelect={(date)=>{
                     const selected = date.toDate()
                     setValue("dateOfBirth",selected)
                 }} className='h-12 focus-visible:border focus-visible:border-border w-full'/>
@@ -81,9 +83,9 @@ export default function UserProfile({firstName,lastName,email}:ISessionInterface
 
             <div className="w-full md:w-6/12 md:pr-2 mb-6 relative">
                 <h1 className="ml-[2px] font-medium text-support mb-[2px] md:text-[15px]">Country</h1>
-                <Select onValueChange={(val)=>{setValue("country",val)}}>
+                <Select  onValueChange={(val)=>{setValue("country",val)}}>
                     <SelectTrigger className='w-full h-12 focus-visible:border'>
-                        <SelectValue placeholder="Choose Country"/>
+                        <SelectValue placeholder={`${country || "Select Country" }`}/>
                     </SelectTrigger>
                     <SelectContent className='h-[260px] overflow-auto default-scroll'>
                         {countries.map((item,key)=>(
