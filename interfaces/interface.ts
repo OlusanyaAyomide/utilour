@@ -30,6 +30,7 @@ export interface ISessionInterface{
     lastName:string
     isVerified:boolean
     merchantID:string
+
 }
 
 export interface IgoogleResponse {
@@ -76,4 +77,37 @@ export interface IBvnn{
 export interface INewBank{
     bankName:string
     AccountNumber:string
+}
+
+
+
+interface IProfile {
+  id: string;
+  userId: string;
+  middleName: string;
+  avatar?: string | null;
+  dateOfBirth: Date;
+  BvnNumber?: string | null;
+  isBvnVerified: boolean;
+  isKycVerified: boolean;
+  payStackCode: string;
+  createdAt: Date;
+  updatedAt: Date;
+  gender: string;
+  phoneNumber: string;
+  country: string;
+  countryCode: string;
+}
+
+
+export interface IProfileAccount{
+    middleName?:string
+    gender?:string
+    country?:string
+    dateOfBirth?:Date
+    phoneNumber?:string
+    countryCode?:string
+    firstName:string
+    lastName:string
+    email:string
 }
