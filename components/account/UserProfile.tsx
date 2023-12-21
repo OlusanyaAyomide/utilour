@@ -14,14 +14,19 @@ import { useForm } from 'react-hook-form';
 import RingSpinner from '@/components/utils/spinners/RingSpinner'
 import { useMutateData } from '@/hooks/useMutateData';
 import dayjs from 'dayjs';
+import { useRouter } from 'next/navigation';
 
 
 export default function UserProfile({firstName,lastName,email,middleName,dateOfBirth,gender,country,countryCode,phoneNumber}:IProfileAccount) {
     const date = new Date(dateOfBirth || "")
-    console.log(gender,country)
-    const {register,handleSubmit,formState:{errors},setValue} = useForm<ICompleteProfile>({resolver:yupResolver(profileSchema),defaultValues:{countryCode:countryCode || "+234" ,middleName,dateOfBirth:dateOfBirth?date:undefined,gender,country,phoneNumber}})
+    const router = useRouter()
+    const {register,handleSubmit,formState:{errors},setValue} = useForm<ICompleteProfile>(
+        {resolver:yupResolver(profileSchema),defaultValues:{countryCode:countryCode || "+234" ,middleName,dateOfBirth:dateOfBirth?date:undefined,gender,country,phoneNumber}}
+        )
 
-    const {isPending,mutate} = useMutateData({url:"/api/user/profile/create",successText:"Profile Succesfully Updated"})
+    const {isPending,mutate} = useMutateData({url:"/api/user/profile/create",successText:"Profile Succesfully Updated",onSuccess:(_)=>{
+        router.refresh()
+    }})
 
     const onSubmit = (value:ICompleteProfile)=>{
         mutate(value)

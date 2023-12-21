@@ -8,6 +8,9 @@ import Loader from '@/components/utils/Loader'
 import { getSession } from '@/utils/server/util'
 import React, { Suspense } from 'react'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function Account() {
   const user = await getSession()
   return (

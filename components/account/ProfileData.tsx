@@ -13,13 +13,12 @@ export default async function ProfileData() {
         }
     })
     
-    console.log(profile)
-    const middleName = profile?.middleName
+    const middleName = profile?.middleName || ""
     const gender = profile?.gender
     const DOb = profile?.dateOfBirth as unknown as string | undefined
-    const phoneNumber = profile?.phoneNumber
+    const phoneNumber = profile?.phoneNumber || ""
     const countryCode = profile?.countryCode
-    const country = profile?.country
+    const country = profile?.country || ""
     const firstName = user.firstName
     const lastName = user.lastName
     const email = user.email
